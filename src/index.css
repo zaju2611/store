@@ -1,13 +1,245 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+	--white: #fff;
+	--dark-grey: rgb(62, 62, 62);
+	--grey: rgb(101, 100, 100);
+	--light-grey: rgb(224, 219, 219);
+	--black: #000;
+	--red: rgb(219, 78, 78);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Chakra Petch", sans-serif;
+}
+body {
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+	background-color: var(--white);
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: row;
+	width: 100%;
+	height: 100px;
+}
+
+.menu-left-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.menu-left-section .container {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon {
+	font-size: 1.7rem;
+	margin: 0.3em;
+	cursor: pointer;
+	color: var(--grey);
+	transition: 0.3s color;
+}
+
+.icon:hover {
+	color: var(--black);
+}
+
+.icon:first-child {
+	margin-left: 0.5em;
+}
+
+.logo {
+	width: 40%;
+}
+
+.shopping-cart {
+	position: relative;
+	margin-right: 0.5em;
+}
+
+.shopping-cart-counter {
+	position: absolute;
+	padding: 0 5px;
+	background-color: var(--red);
+	left: 55%;
+	top: 55%;
+	border-radius: 50%;
+	font-size: 0.8rem;
+}
+
+.hr {
+	width: 100%;
+	height: 1px;
+	background-color: var(--grey);
+}
+
+.searchBar {
+	margin: 0;
+	width: 100%;
+	height: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid var(--light-grey);
+	animation-duration: 0.3s;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
+}
+
+.searchBar-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	height: 70%;
+	width: 80%;
+	border: 1px solid var(--light-grey);
+	transition: border-color 0.3s;
+}
+
+.searchBar-container.active {
+	border-color: var(--black);
+}
+
+.searchBar .searchInput {
+	margin-right: 10px;
+	height: 80%;
+	width: 80%;
+	margin: 5px;
+	border: none;
+	outline: none;
+}
+
+.searchBar #searchIcon {
+	cursor: pointer;
+}
+
+.searchBar.slideIn {
+	animation-name: slideIn;
+}
+
+.searchBar.slideOut {
+	animation-name: slideOut;
+}
+
+.navListWrapper {
+	position: fixed;
+	top: 0;
+	left: -300px;
+	bottom: 0;
+	width: 300px;
+	background-color: var(--white);
+	z-index: 10;
+	max-height: 100vh;
+	overflow-y: auto;
+}
+
+.navListWrapper::-webkit-scrollbar {
+	width: 8px;
+}
+
+.navListWrapper::-webkit-scrollbar-thumb {
+	background-color: var(--black);
+}
+
+.navListWrapper::-webkit-scrollbar-track {
+	background-color: var(--white);
+}
+
+.showNav {
+	animation: showNav ease forwards;
+	animation-duration: 0.3s;
+}
+
+.hideNav {
+	animation: hideNav ease forwards;
+	animation-duration: 0.3s;
+}
+
+.item {
+	width: 100%;
+	height: 80px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 20px;
+	cursor: pointer;
+	background-color: var(--light-grey);
+	margin: 5px 0;
+	transition: background-color 0.3s;
+}
+
+.item:first-child {
+	background-color: var(--dark-grey);
+	color: var(--white);
+}
+
+.item:hover {
+	background-color: var(--red);
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5); /* Przezroczysty szary kolor */
+	z-index: 9; /* Ustaw z-index mniejszy niż navListWrapper, aby było klikalne */
+	pointer-events: none; /* Zapobiega przechwytywaniu zdarzeń kliknięcia */
+}
+
+.showOverlay {
+	pointer-events: auto; /* Po kliknięciu na overlay, odzyskuje możliwość przechwytywania zdarzeń */
+}
+
+@keyframes showNav {
+	0% {
+		left: -300px;
+	}
+	100% {
+		left: 0;
+	}
+}
+@keyframes hideNav {
+	0% {
+		left: 0;
+	}
+	100% {
+		left: -300px;
+	}
+}
+
+@keyframes slideIn {
+	0% {
+		transform: scaleY(0);
+		transform-origin: top;
+	}
+	100% {
+		transform: scaleY(1);
+		transform-origin: top;
+	}
+}
+
+@keyframes slideOut {
+	0% {
+		transform: scaleY(1);
+		transform-origin: top;
+	}
+
+	100% {
+		transform: scaleY(0);
+		transform-origin: top;
+	}
 }
