@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 export default function NavListItem({ data, handleNavClick }) {
 	return (
-		<div className="item" onClick={handleNavClick}>
-			{data}
-		</div>
+		<Link className="item" to={data.path} onClick={handleNavClick}>
+			<div>{data.label}</div>
+		</Link>
 	);
 }

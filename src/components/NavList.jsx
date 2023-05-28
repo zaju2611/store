@@ -12,7 +12,13 @@ export default function NavList({ categories, handleNavClick }) {
 				/>
 			);
 		} else {
-			return <NavListItem key={index} data={category} />;
+			return (
+				<NavListItem
+					key={index}
+					data={category}
+					handleNavClick={handleNavClick}
+				/>
+			);
 		}
 	});
 
