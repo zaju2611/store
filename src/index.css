@@ -337,6 +337,71 @@ body {
 	background-color: var(--grey);
 }
 
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: var(--light-grey);
+	text-align: center;
+	display: flex;
+
+	align-items: center;
+	flex-direction: column;
+}
+
+.footerContainer {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	margin: 10px;
+	max-width: 700px;
+}
+
+.footerBox {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	grid-column: span 1;
+	color: var(--grey);
+}
+
+.footerBox .footerItem {
+	text-decoration: none;
+	color: var(--grey);
+	font-size: 0.9rem;
+	margin: 0.2em;
+}
+
+.footerBox a {
+	cursor: pointer;
+}
+
+.footerBox a:hover {
+	color: var(--black);
+}
+
+.footerBoxHeader {
+	color: var(--black);
+	margin-bottom: 0.5em;
+}
+
+.iconsRow {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon {
+	margin: 5px;
+	font-size: 1.3rem;
+}
+
+.copyright {
+	font-size: 0.7rem;
+	margin-bottom: 0.2em;
+}
+
 @keyframes showNav {
 	0% {
 		left: -300px;
