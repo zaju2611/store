@@ -1,3 +1,3 @@
 export default function Blouse() {
-	return <div> Bluzki </div>;
+	return <div> MenClothing </div>;
 }

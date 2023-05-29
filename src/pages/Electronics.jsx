@@ -1,3 +1,3 @@
 export default function Skirt() {
-	return <div> Spódnice </div>;
+	return <div> Electronics </div>;
 }

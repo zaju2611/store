@@ -1,3 +1,3 @@
 export default function Pants() {
-	return <div> Spodnie </div>;
+	return <div> Jewelery </div>;
 }
