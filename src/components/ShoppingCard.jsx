@@ -14,7 +14,7 @@ export default function ShoppingCard() {
 			</div>
 			<ShoppingSummary />
 			<FreeDeliveryBox />
-			<button className="buyButton">Podsumowanie</button>
+			<button className="buyButton">Summary</button>
 		</div>
 	);
 }

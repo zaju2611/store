@@ -25,7 +25,7 @@ export default function App() {
 	}, []);
 
 	const categoryObjects = [
-		{ label: "Zamknij", path: "/" },
+		{ label: "Close", path: "/" },
 		...categories.map((category, index) => ({
 			label: category,
 			path: String(index),

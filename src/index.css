@@ -223,7 +223,7 @@ a {
 }
 
 .shoppingCard {
-	position: fixed;
+	position: absolute;
 	top: 90px;
 	right: 15px;
 	bottom: 0;
@@ -405,7 +405,7 @@ a {
 
 .copyright {
 	font-size: 0.7rem;
-	margin-bottom: 0.2em;
+	margin-bottom: 1em;
 }
 
 .productContainer {
@@ -420,8 +420,8 @@ a {
 }
 
 .customBox img {
-	width: 300px;
-	height: 225px;
+	width: 350px;
+	height: 275px;
 	margin: 10px;
 	filter: grayscale(100%);
 	transition: filter 0.3s;
