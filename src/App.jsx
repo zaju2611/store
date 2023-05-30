@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import NavBar from "./components/Navbar";
 import Home from "./pages/Home";
 import Clothes from "./pages/Clothes";
@@ -13,6 +13,7 @@ export default function App() {
 	const [categories, setCategories] = useState([]);
 	const [products, setProducts] = useState([]);
 	const [filteredProducts, setFilteredProducts] = useState([]);
+	const location = useLocation();
 
 	useEffect(() => {
 		fetch("https://api.escuelajs.co/api/v1/categories")
@@ -29,6 +30,10 @@ export default function App() {
 				setFilteredProducts(data);
 			});
 	}, []);
+
+	useEffect(() => {
+		setFilteredProducts(products);
+	}, [products, location]);
 
 	const categoryObjects = [
 		{ label: "Close", path: "/" },

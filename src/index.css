@@ -617,10 +617,11 @@ a {
 .paginationButton:disabled {
 	border-color: gray;
 	color: gray;
+	cursor: default;
 }
 
 .paginationButton:disabled:hover {
-	box-shadow: 0 0 5px var(--grey);
+	box-shadow: none;
 }
 
 .currentPage {

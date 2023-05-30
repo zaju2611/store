@@ -1,10 +1,14 @@
-import Product from "../components/Product";
-import Pagination from "../components/Pagination";
-import { useState } from "react";
+import Product from "./Product";
+import Pagination from "./Pagination";
+import { useState, useEffect } from "react";
 
-export default function Clothes({ products }) {
+export default function SetProducts({ products }) {
 	const [currentPage, setCurrentPage] = useState(1);
-	const productPerPage = 9;
+	const productPerPage = 12;
+
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [products]);
 
 	const renderedProducts = products.map((product, index) => {
 		return <Product key={index} product={product} />;

@@ -1,4 +1,4 @@
-import FilterProducts from "../components/FilterProducts";
+import SetProducts from "../components/SetProducts";
 
 export default function Shoes({ products }) {
 	const filteredProducts = products.filter(
@@ -7,7 +7,7 @@ export default function Shoes({ products }) {
 
 	return (
 		<div>
-			<FilterProducts products={filteredProducts} />
+			<SetProducts products={filteredProducts} />
 		</div>
 	);
 }

@@ -2,7 +2,7 @@ import electronic from "../images/elektronika.jpg";
 import men from "../images/men.jpg";
 import women from "../images/women.jpg";
 import furniture from "../images/furniture.jpg";
-import ProductHome from "../components/ProductHome";
+import CategoryHomePage from "../components/CategoryHomePage";
 import SlideShow from "../components/SlideShow";
 
 import menSlider from "../images/menSlider.jpg";
@@ -29,7 +29,7 @@ export default function Home({ products }) {
 		<div className="pageContainer">
 			<div className="productContainer">
 				{categories.map((category, index) => (
-					<ProductHome key={index} category={category} />
+					<CategoryHomePage key={index} category={category} />
 				))}
 			</div>
 			<SlideShow images={slideshowImages} />
