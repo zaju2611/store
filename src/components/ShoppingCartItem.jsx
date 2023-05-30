@@ -1,4 +1,4 @@
-import bluzka from "../logo/bluzka.jpg";
+import bluzka from "../images/bluzka.jpg";
 import { MdDelete } from "react-icons/md";
 export default function ShoppingCardItem() {
 	return (

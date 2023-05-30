@@ -1,6 +1,6 @@
 import { GoThreeBars, GoSearch, GoPerson } from "react-icons/go";
 import { BiShoppingBag } from "react-icons/bi";
-import logo from "../logo/logo.png";
+import logo from "../images/logo.png";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 import NavList from "./NavList";

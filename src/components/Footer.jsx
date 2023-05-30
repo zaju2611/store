@@ -40,12 +40,12 @@ export default function Footer() {
 				<div className="footerBox">
 					<h4 className="footerBoxHeader">Znajdź nas</h4>
 					<div className="iconsRow">
-						<BsInstagram className="icon" />
-						<ImFacebook2 className="icon" />
+						<BsInstagram className="iconFooter" />
+						<ImFacebook2 className="iconFooter" />
 					</div>
 					<div className="iconsRow">
-						<FaTiktok className="icon" />
-						<BsYoutube className="icon" />
+						<FaTiktok className="iconFooter" />
+						<BsYoutube className="iconFooter" />
 					</div>
 				</div>
 			</div>
