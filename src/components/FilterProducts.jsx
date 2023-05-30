@@ -1,4 +1,5 @@
 import Product from "../components/Product";
+import Pagination from "../components/Pagination";
 import { useState } from "react";
 
 export default function Clothes({ products }) {
@@ -31,19 +32,20 @@ export default function Clothes({ products }) {
 	};
 
 	return (
-		<div className="productsList">
-			<div className="pagination">
-				<button onClick={handlePrevPage} disabled={currentPage === 1}>
-					Previous
-				</button>
-				<span>
-					Page {currentPage} of {totalPages}
-				</span>
-				<button onClick={handleNextPage} disabled={currentPage === totalPages}>
-					Next
-				</button>
-			</div>
-			{currentProducts}{" "}
+		<div className="pageContainer">
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				onNextPage={handleNextPage}
+				onPrevPage={handlePrevPage}
+			/>
+			<div className="productsList">{currentProducts}</div>
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				onNextPage={handleNextPage}
+				onPrevPage={handlePrevPage}
+			/>
 		</div>
 	);
 }

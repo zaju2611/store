@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 export default function App() {
 	const [categories, setCategories] = useState([]);
 	const [products, setProducts] = useState([]);
+	const [filteredProducts, setFilteredProducts] = useState([]);
 
 	useEffect(() => {
 		fetch("https://api.escuelajs.co/api/v1/categories")
@@ -19,14 +20,13 @@ export default function App() {
 			.then((data) => {
 				const uniqueCategories = data.map((item) => item.name);
 				setCategories(uniqueCategories.slice(0, 5));
-				console.log(data);
 			});
 
 		fetch("https://api.escuelajs.co/api/v1/products")
 			.then((res) => res.json())
 			.then((data) => {
 				setProducts(data);
-				console.log(data);
+				setFilteredProducts(data);
 			});
 	}, []);
 
@@ -38,16 +38,30 @@ export default function App() {
 		})),
 	];
 
+	const handleSearch = (searchValue) => {
+		if (searchValue === "") {
+			setFilteredProducts(products);
+		} else {
+			const filtered = products.filter((product) =>
+				product.title.toLowerCase().includes(searchValue.toLowerCase())
+			);
+			setFilteredProducts(filtered);
+		}
+	};
+
 	return (
 		<div>
-			<NavBar categories={categoryObjects} />
+			<NavBar categories={categoryObjects} onSearch={handleSearch} />
 			<Routes>
 				<Route path="/" element={<Home products={products} />} />
-				<Route path="/0" element={<Clothes products={products} />} />
-				<Route path="/1" element={<Electronics products={products} />} />
-				<Route path="/2" element={<Furniture products={products} />} />
-				<Route path="/3" element={<Shoes products={products} />} />
-				<Route path="/4" element={<Others products={products} />} />
+				<Route path="/0" element={<Clothes products={filteredProducts} />} />
+				<Route
+					path="/1"
+					element={<Electronics products={filteredProducts} />}
+				/>
+				<Route path="/2" element={<Furniture products={filteredProducts} />} />
+				<Route path="/3" element={<Shoes products={filteredProducts} />} />
+				<Route path="/4" element={<Others products={filteredProducts} />} />
 			</Routes>
 			<Footer />
 		</div>

@@ -1,12 +1,13 @@
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ onSearch }) {
 	const [input, setInput] = useState("");
 	const [isInputActive, setIsInputActive] = useState(false);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
+		onSearch(input);
 		setInput("");
 	};
 

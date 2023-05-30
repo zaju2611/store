@@ -1,6 +1,7 @@
 import { AiOutlineHeart } from "react-icons/ai";
 
 export default function Product({ product }) {
+	console.log(product);
 	return (
 		<div className="productBox">
 			<div className="imageBox">

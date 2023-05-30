@@ -7,7 +7,7 @@ import NavList from "./NavList";
 import { Link } from "react-router-dom";
 import ShoppingCard from "../components/ShoppingCard";
 
-export default function NavBar({ categories }) {
+export default function NavBar({ categories, onSearch }) {
 	const [showSearchBar, setShowSearchBar] = useState(false);
 	const [showNavBar, setShowNavBar] = useState(false);
 	const [showShoppingCard, setShowShoppingCard] = useState(false);
@@ -60,7 +60,7 @@ export default function NavBar({ categories }) {
 			</div>
 			<div className="hr"></div>
 			<div className={`searchBar ${showSearchBar ? "slideIn" : "slideOut"}`}>
-				{showSearchBar && <SearchBar />}
+				{showSearchBar && <SearchBar onSearch={onSearch} />}
 			</div>
 			<div
 				className={`shoppingCard ${
