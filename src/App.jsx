@@ -6,6 +6,7 @@ import Furniture from "./pages/Furniture";
 import Electronics from "./pages/Electronics";
 import Shoes from "./pages/Shoes";
 import Others from "./pages/Others";
+import ProductPage from "./pages/ProductPage";
 import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 
@@ -67,6 +68,7 @@ export default function App() {
 				<Route path="/2" element={<Furniture products={filteredProducts} />} />
 				<Route path="/3" element={<Shoes products={filteredProducts} />} />
 				<Route path="/4" element={<Others products={filteredProducts} />} />
+				<Route path="/product/:productId" element={<ProductPage />} />
 			</Routes>
 			<Footer />
 		</div>

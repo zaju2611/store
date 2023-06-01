@@ -1,9 +1,15 @@
 import { AiOutlineHeart } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 export default function Product({ product }) {
-	console.log(product);
+	const navigate = useNavigate();
+
+	const handleProductClick = () => {
+		navigate(`/product/${product.id}`, { state: { product } });
+	};
+
 	return (
-		<div className="productBox">
+		<div className="productBox" onClick={handleProductClick}>
 			<div className="imageBox">
 				<img src={product.images[0]} alt={product.title} />
 			</div>

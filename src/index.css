@@ -585,6 +585,7 @@ a {
 }
 .pageContainer {
 	display: flex;
+	min-height: 62vh;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
@@ -626,6 +627,10 @@ a {
 
 .currentPage {
 	font-size: 1.2rem;
+}
+
+.sliderImage.active {
+	border: 2px solid blue;
 }
 
 @keyframes rotateImages {

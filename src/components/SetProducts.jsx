@@ -35,6 +35,14 @@ export default function SetProducts({ products }) {
 		}
 	};
 
+	if (renderedProducts.length === 0) {
+		return (
+			<div className="pageContainer">
+				<p>Brak dostępnych produktów.</p>
+			</div>
+		);
+	}
+
 	return (
 		<div className="pageContainer">
 			<Pagination

@@ -5,7 +5,6 @@ export default function Clothes({ products }) {
 		(product) => product.category.name === "Clothes"
 	);
 
-	console.log(filteredProducts);
 	return (
 		<div>
 			<SetProducts products={filteredProducts} />
