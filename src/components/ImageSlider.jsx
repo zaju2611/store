@@ -52,11 +52,19 @@ export default function ImageSlider({ images }) {
 	});
 
 	return (
-		<div>
-			<GoChevronLeft onClick={() => handlePrevImg()} />
-			<img src={sliderData} alt={sliderData} />
-			<GoChevronRight onClick={() => handleNextImg()} />
-			{renderedImages}
+		<div className="imageSection">
+			<div className="imageContainer">
+				<GoChevronLeft
+					className="imageArrow leftArrow"
+					onClick={() => handlePrevImg()}
+				/>
+				<img className="image" src={sliderData} alt={sliderData} />
+				<GoChevronRight
+					className="imageArrow rightArrow"
+					onClick={() => handleNextImg()}
+				/>
+			</div>
+			<div>{renderedImages}</div>
 		</div>
 	);
 }
