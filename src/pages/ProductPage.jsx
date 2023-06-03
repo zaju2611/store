@@ -3,6 +3,7 @@ import ImageSlider from "../components/ImageSlider";
 import ProductCounter from "../components/ProductCounter";
 import { AiOutlineHeart } from "react-icons/ai";
 import { SlEnvolopeLetter } from "react-icons/sl";
+import OtherCategories from "../components/OtherCategories";
 
 export default function ProductPage() {
 	const location = useLocation();
@@ -26,6 +27,7 @@ export default function ProductPage() {
 					</div>
 				</div>
 			</div>
+			<OtherCategories />
 		</div>
 	);
 }
