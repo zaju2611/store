@@ -152,10 +152,34 @@ a {
 	width: 300px;
 	background-color: var(--white);
 	z-index: 10;
-	max-height: 100vh;
+
 	overflow-y: auto;
 	text-transform: uppercase;
 	font-size: 0.8rem;
+}
+
+.navContainer {
+	display: flex;
+	height: 100vh;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.navIcons {
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 20px;
+	font-size: 2rem;
+	color: var(--grey);
+}
+
+.navIcons svg {
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.navIcons svg:hover {
+	color: var(--pink);
 }
 
 .navListWrapper::-webkit-scrollbar,
@@ -226,8 +250,8 @@ a {
 	position: absolute;
 	top: 90px;
 	right: 15px;
-	bottom: 0;
-	width: 300px;
+
+	width: 320px;
 	background-color: var(--white);
 	z-index: 10;
 	max-height: 660px;
@@ -544,7 +568,7 @@ a {
 }
 .productPrice {
 	grid-row: 2/3;
-	margin: 0.3em;
+	margin: 0.3em 0.3em 0.7em 0.3em;
 }
 
 .buttonBox {
@@ -555,14 +579,17 @@ a {
 }
 
 .descriptionBox button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
 	min-width: 150px;
 	border: none;
 	background: none;
 	border-top: 1px solid var(--light-grey);
 	border-left: 1px solid var(--light-grey);
 	border-right: 1px solid var(--light-grey);
-	padding: 5px;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	cursor: pointer;
 	color: var(--grey);
 	transition: color 0.3s, box-shadow 0.3s;

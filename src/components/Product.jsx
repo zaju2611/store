@@ -30,7 +30,7 @@ export default function Product({ product }) {
 					<button
 						className="addToCard"
 						onClick={(event) => handleProductAdd(event, product)}>
-						Add to card
+						Add to cart
 					</button>
 					<button
 						className="addToFavorite"
