@@ -1,44 +1,75 @@
 import { GoThreeBars, GoSearch, GoPerson } from "react-icons/go";
 import { BiShoppingBag } from "react-icons/bi";
-import logo from "../images/logo.png";
-import { useState } from "react";
+import logo from "../assets/images/logo.png";
+import { useReducer } from "react";
 import SearchBar from "./SearchBar";
 import NavList from "./NavList";
 import { Link } from "react-router-dom";
-import ShoppingCard from "../components/ShoppingCard";
+import ShoppingCart from "./ShoppingCart";
+import { useSelector } from "react-redux";
+import { selectProductCount } from "../store";
+
+const initialState = {
+	showSearchBar: false,
+	showNavBar: false,
+	showShoppingCard: false,
+};
+
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "TOGGLE_SEARCH_BAR":
+			return {
+				...state,
+				showSearchBar: !state.showSearchBar,
+				showNavBar: false,
+				showShoppingCard: false,
+			};
+		case "TOGGLE_NAV_BAR":
+			return {
+				...state,
+				showNavBar: !state.showNavBar,
+				showSearchBar: false,
+				showShoppingCard: false,
+			};
+		case "TOGGLE_SHOPPING_CARD":
+			return {
+				...state,
+				showShoppingCard: !state.showShoppingCard,
+				showNavBar: false,
+				showSearchBar: false,
+			};
+		default:
+			return state;
+	}
+};
 
 export default function NavBar({ categories, onSearch }) {
-	const [showSearchBar, setShowSearchBar] = useState(false);
-	const [showNavBar, setShowNavBar] = useState(false);
-	const [showShoppingCard, setShowShoppingCard] = useState(false);
-
+	const [state, dispatch] = useReducer(reducer, initialState);
+	const products = useSelector(selectProductCount);
 	const handleSearchClick = () => {
-		setShowSearchBar(!showSearchBar);
-		setShowNavBar(false);
-		setShowShoppingCard(false);
+		dispatch({ type: "TOGGLE_SEARCH_BAR" });
 	};
 
 	const handleNavClick = () => {
-		setShowNavBar(!showNavBar);
-		setShowSearchBar(false);
-		setShowShoppingCard(false);
+		dispatch({ type: "TOGGLE_NAV_BAR" });
 	};
 
 	const handleShoppingCardClick = () => {
-		setShowShoppingCard(!showShoppingCard);
-		setShowNavBar(false);
-		setShowSearchBar(false);
+		dispatch({ type: "TOGGLE_SHOPPING_CARD" });
 	};
 
 	return (
 		<div className="navWrapper">
-			{showNavBar && (
+			{state.showNavBar && (
 				<div
-					className={`overlay ${showNavBar ? "showOverlay" : ""}`}
+					className={`overlay ${state.showNavBar ? "showOverlay" : ""}`}
 					onClick={handleNavClick}></div>
 			)}
-			<div className={`navListWrapper ${showNavBar ? "showNav" : "hideNav"}`}>
-				{showNavBar && (
+			<div
+				className={`navListWrapper ${
+					state.showNavBar ? "showNav" : "hideNav"
+				}`}>
+				{state.showNavBar && (
 					<NavList categories={categories} handleNavClick={handleNavClick} />
 				)}
 			</div>
@@ -54,19 +85,20 @@ export default function NavBar({ categories, onSearch }) {
 					<GoPerson className="icon" />
 					<div className="container shopping-cart">
 						<BiShoppingBag className="icon" onClick={handleShoppingCardClick} />
-						<div className="shopping-cart-counter">0</div>
+						<div className="shopping-cart-counter">{products}</div>
 					</div>
 				</div>
 			</div>
 			<div className="hr"></div>
-			<div className={`searchBar ${showSearchBar ? "slideIn" : "slideOut"}`}>
-				{showSearchBar && <SearchBar onSearch={onSearch} />}
+			<div
+				className={`searchBar ${state.showSearchBar ? "slideIn" : "slideOut"}`}>
+				{state.showSearchBar && <SearchBar onSearch={onSearch} />}
 			</div>
 			<div
 				className={`shoppingCard ${
-					showShoppingCard ? "slideInShopping" : "slideOutShopping"
+					state.showShoppingCard ? "slideInShopping" : "slideOutShopping"
 				}`}>
-				{showShoppingCard && <ShoppingCard />}
+				{state.showShoppingCard && <ShoppingCart />}
 			</div>
 		</div>
 	);

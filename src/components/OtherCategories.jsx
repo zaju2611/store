@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
-import womenSlider from "../images/womenSlider.jpg";
-import electronic from "../images/elektronika.jpg";
-import furniture from "../images/furniture.jpg";
-import phoneSlider from "../images/phoneSlider.jpg";
-import men from "../images/men.jpg";
+import womenSlider from "../assets/images/womenSlider.jpg";
+import electronic from "../assets/images/elektronika.jpg";
+import furniture from "../assets/images/furniture.jpg";
+import phoneSlider from "../assets/images/phoneSlider.jpg";
+import men from "../assets/images/men.jpg";
 import { GoChevronRight, GoChevronLeft } from "react-icons/go";
 
-export default function OtherProduct() {
+export default function OtherCategories() {
 	const categories = [
 		{ id: 1, name: "Electronic", image: electronic, slug: "1" },
 		{ id: 2, name: "Shoes", image: men, slug: "2" },
@@ -37,8 +37,8 @@ export default function OtherProduct() {
 
 	const renderedCategories = categories.map((category) => {
 		return (
-			<Link to={`/${category.slug}`} onClick={handleClick}>
-				<div key={category.id} style={{ margin: "0 5px", cursor: "pointer" }}>
+			<Link key={category.id} to={`/${category.slug}`} onClick={handleClick}>
+				<div style={{ margin: "0 5px", cursor: "pointer" }}>
 					<img
 						src={category.image}
 						alt={category.name}
