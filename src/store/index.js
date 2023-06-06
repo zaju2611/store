@@ -5,15 +5,15 @@ const productsSlice = createSlice({
 	initialState: [],
 	reducers: {
 		addProduct(state, action) {
-			const newProduct = action.payload;
+			const { newProduct, quantity } = action.payload;
 			const existingProductIndex = state.findIndex(
 				(product) => product.id === newProduct.id
 			);
 
 			if (existingProductIndex !== -1) {
-				state[existingProductIndex].quantity += 1;
+				state[existingProductIndex].quantity += quantity;
 			} else {
-				state.push({ ...newProduct, quantity: 1 });
+				state.push({ ...newProduct, quantity: quantity });
 			}
 		},
 		removeProduct(state, action) {
@@ -57,8 +57,13 @@ const calculateTotal = (state) => {
 };
 
 export { store };
-export const { addProduct, removeProduct, incrementProduct, decrementProduct } =
-	productsSlice.actions;
+export const {
+	addProduct,
+	addProductFast,
+	removeProduct,
+	incrementProduct,
+	decrementProduct,
+} = productsSlice.actions;
 export const selectProductCount = createSelector(selectProducts, (products) =>
 	products.reduce((count, product) => count + product.quantity, 0)
 );
