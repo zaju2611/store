@@ -20,6 +20,27 @@ const productsSlice = createSlice({
 			const productId = action.payload;
 			return state.filter((product) => product.id !== productId);
 		},
+		incrementProduct(state, action) {
+			const newProduct = action.payload;
+			const existingProductIndex = state.findIndex(
+				(product) => product.id === newProduct.id
+			);
+
+			if (existingProductIndex !== -1) {
+				state[existingProductIndex].quantity += 1;
+			}
+		},
+
+		decrementProduct(state, action) {
+			const newProduct = action.payload;
+			const existingProductIndex = state.findIndex(
+				(product) => product.id === newProduct.id
+			);
+
+			if (existingProductIndex !== -1) {
+				state[existingProductIndex].quantity -= 1;
+			}
+		},
 	},
 });
 
@@ -36,7 +57,8 @@ const calculateTotal = (state) => {
 };
 
 export { store };
-export const { addProduct, removeProduct } = productsSlice.actions;
+export const { addProduct, removeProduct, incrementProduct, decrementProduct } =
+	productsSlice.actions;
 export const selectProductCount = createSelector(selectProducts, (products) =>
 	products.reduce((count, product) => count + product.quantity, 0)
 );
