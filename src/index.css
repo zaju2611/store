@@ -250,7 +250,6 @@ a {
 	position: absolute;
 	top: 90px;
 	right: 15px;
-
 	width: 320px;
 	background-color: var(--white);
 	z-index: 10;
@@ -294,7 +293,8 @@ a {
 .itemImage {
 	grid-row: 1 / span 3;
 	justify-self: start;
-	height: 150px;
+	max-height: 150px;
+	max-width: 150px;
 	cursor: pointer;
 }
 

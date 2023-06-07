@@ -12,7 +12,7 @@ import { selectProductCount } from "../store";
 const initialState = {
 	showSearchBar: false,
 	showNavBar: false,
-	showShoppingCard: false,
+	showShoppingCart: false,
 };
 
 const reducer = (state, action) => {
@@ -22,19 +22,19 @@ const reducer = (state, action) => {
 				...state,
 				showSearchBar: !state.showSearchBar,
 				showNavBar: false,
-				showShoppingCard: false,
+				showShoppingCart: false,
 			};
 		case "TOGGLE_NAV_BAR":
 			return {
 				...state,
 				showNavBar: !state.showNavBar,
 				showSearchBar: false,
-				showShoppingCard: false,
+				showShoppingCart: false,
 			};
-		case "TOGGLE_SHOPPING_CARD":
+		case "TOGGLE_SHOPPING_CART":
 			return {
 				...state,
-				showShoppingCard: !state.showShoppingCard,
+				showShoppingCart: !state.showShoppingCart,
 				showNavBar: false,
 				showSearchBar: false,
 			};
@@ -54,8 +54,8 @@ export default function NavBar({ categories, onSearch }) {
 		dispatch({ type: "TOGGLE_NAV_BAR" });
 	};
 
-	const handleShoppingCardClick = () => {
-		dispatch({ type: "TOGGLE_SHOPPING_CARD" });
+	const handleShoppingCartClick = () => {
+		dispatch({ type: "TOGGLE_SHOPPING_CART" });
 	};
 
 	return (
@@ -84,7 +84,7 @@ export default function NavBar({ categories, onSearch }) {
 				<div className="menu-left-section">
 					<GoPerson className="icon" />
 					<div className="container shopping-cart">
-						<BiShoppingBag className="icon" onClick={handleShoppingCardClick} />
+						<BiShoppingBag className="icon" onClick={handleShoppingCartClick} />
 						<div className="shopping-cart-counter">{products}</div>
 					</div>
 				</div>
@@ -96,9 +96,9 @@ export default function NavBar({ categories, onSearch }) {
 			</div>
 			<div
 				className={`shoppingCard ${
-					state.showShoppingCard ? "slideInShopping" : "slideOutShopping"
+					state.showShoppingCart ? "slideInShopping" : "slideOutShopping"
 				}`}>
-				{state.showShoppingCard && <ShoppingCart />}
+				{state.showShoppingCart && <ShoppingCart />}
 			</div>
 		</div>
 	);
