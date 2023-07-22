@@ -50,7 +50,7 @@ const store = configureStore({
 	},
 });
 
-const selectProducts = (state) => state.products;
+export const selectProducts = (state) => state.products;
 
 const calculateTotal = (state) => {
 	return state.reduce((total, item) => total + item.price * item.quantity, 0);

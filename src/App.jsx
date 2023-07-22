@@ -9,6 +9,7 @@ import Others from "./pages/Others";
 import ProductPage from "./pages/ProductPage";
 import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
+import Summary from "./pages/Summary";
 
 export default function App() {
 	const [categories, setCategories] = useState([]);
@@ -69,6 +70,7 @@ export default function App() {
 				<Route path="/3" element={<Shoes products={filteredProducts} />} />
 				<Route path="/4" element={<Others products={filteredProducts} />} />
 				<Route path="/product/:productId" element={<ProductPage />} />
+				<Route path="/summary" element={<Summary />} />
 			</Routes>
 			<Footer />
 		</div>

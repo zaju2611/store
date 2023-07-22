@@ -858,6 +858,70 @@ a {
 	flex-direction: column;
 	max-width: 700px;
 }
+
+.summaryContainer {
+	justify-content: flex-start;
+}
+table {
+	width: 80%;
+	border-spacing: 0 20px;
+}
+
+th {
+	padding: 20px;
+	font-size: 1.5rem;
+}
+
+td {
+	margin: 1rem;
+	text-align: center;
+	width: 15%;
+}
+
+tr {
+	position: relative;
+}
+tr::after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	right: 0;
+	height: 1px;
+	border-bottom: 1px solid black;
+}
+.counterTableSection {
+	margin: 0 auto;
+	width: 65%;
+	height: 50px;
+}
+.counterTableSection > svg {
+	font-size: 4rem;
+}
+.productTableSection {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 400px;
+}
+
+.productTableSection td {
+	width: 33%;
+}
+.itemTableImage {
+	width: 25%;
+	cursor: pointer;
+}
+.productTable {
+	font-size: 1rem;
+	max-width: 150px;
+	word-break: break-word;
+	cursor: pointer;
+}
+
 @keyframes rotateImages {
 	0% {
 		opacity: 0;

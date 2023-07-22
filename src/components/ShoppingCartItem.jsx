@@ -1,16 +1,14 @@
 import { MdDelete } from "react-icons/md";
-import { removeProduct } from "../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ProductCounter from "../components/ProductCounter";
 import { useRedirection } from "../hooks/useRedirection";
+import { useRemoveProduct } from "../hooks//useRemoveProduct";
+
 export default function ShoppingCardItem({ product }) {
-	const dispatch = useDispatch();
 	const redirection = useRedirection(product);
 	const cart = useSelector((state) => state.products);
 
-	const handleRemoveProduct = (product) => {
-		dispatch(removeProduct(product.id));
-	};
+	const handleRemoveProduct = useRemoveProduct(product);
 
 	const getProductQuantity = (product) => {
 		const cartItem = cart.find((item) => item.id === product.id);
@@ -21,7 +19,7 @@ export default function ShoppingCardItem({ product }) {
 		<div className="shoppingCardItem">
 			<img
 				src={product.images[0]}
-				alt="blouse"
+				alt="cart item"
 				className="itemImage"
 				onClick={redirection}
 			/>

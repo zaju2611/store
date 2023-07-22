@@ -2,6 +2,7 @@ import FreeDeliveryBox from "./FreeDeliveryBox";
 import ShoppingCardItem from "./ShoppingCartItem";
 import ShoppingSummary from "./ShoppingSummary";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function ShoppingCart() {
 	const productList = useSelector((state) => {
@@ -17,7 +18,9 @@ export default function ShoppingCart() {
 			<div className="shoppingCardList">{renderedProducts}</div>
 			<ShoppingSummary />
 			<FreeDeliveryBox />
-			<button className="buyButton">Summary</button>
+			<Link to="/summary">
+				<button className="buyButton">Summary</button>
+			</Link>
 		</div>
 	);
 }
