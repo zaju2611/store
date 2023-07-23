@@ -29,7 +29,7 @@ export default function SummaryItem({ product }) {
 				<td>
 					<ProductCounter className="counterTableSection" product={product} />
 				</td>
-				<td className="priceTableSection">{product.price},00zł</td>
+				<td className="priceTableSection">{product.price},00 zł</td>
 				<td className="totalTableSection">
 					<p className="price">
 						<span className="mainPrice">

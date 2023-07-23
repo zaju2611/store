@@ -869,7 +869,7 @@ table {
 
 th {
 	padding: 20px;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 }
 
 td {
@@ -894,7 +894,6 @@ tr::after {
 .counterTableSection {
 	margin: 0 auto;
 	width: 65%;
-	height: 50px;
 }
 .counterTableSection > svg {
 	font-size: 4rem;
@@ -917,9 +916,60 @@ tr::after {
 }
 .productTable {
 	font-size: 1rem;
-	max-width: 150px;
+	width: 150px;
 	word-break: break-word;
 	cursor: pointer;
+}
+tfoot {
+	width: 100%;
+	color: var(--pink);
+	font-size: 1.2rem;
+}
+
+.row {
+	border-bottom: 1px solid var(--light-grey);
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+}
+.row:last-child {
+	border: none;
+}
+.promo {
+	width: 100%;
+	border: none;
+	padding: 5px;
+
+	font-size: 1rem;
+}
+.promo-label {
+	position: relative;
+	display: inline-block;
+	width: 70%;
+	border-bottom: 1px solid var(--light-grey);
+}
+.promo-label::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 1px;
+	background-color: gray;
+	transition: width 0.3s;
+}
+.promo-label:focus-within::before {
+	width: 100%;
+	background-color: black;
+}
+.promo:focus {
+	outline: none;
+}
+
+.promoButton:hover {
+	box-shadow: 0 0 8px 2px var(--dark-grey);
+	border: none;
 }
 
 @keyframes rotateImages {
