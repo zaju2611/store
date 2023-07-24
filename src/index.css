@@ -927,20 +927,21 @@ tfoot {
 }
 
 .row {
-	border-bottom: 1px solid var(--light-grey);
 	padding: 15px;
 	display: flex;
 	justify-content: space-between;
 }
-.row:last-child {
-	border: none;
+
+.row:not(:nth-child(n + 5)) {
+	border-bottom: 1px solid var(--light-grey);
 }
+
 .promo {
 	width: 100%;
 	border: none;
 	padding: 5px;
 
-	font-size: 1rem;
+	font-size: 0.8rem;
 }
 .promo-label {
 	position: relative;
