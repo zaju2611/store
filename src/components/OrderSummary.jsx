@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function OrderSummary({
 	value,
@@ -151,13 +152,16 @@ export default function OrderSummary({
 					{invalidPromoMessage}
 				</p>
 			)}
-			<div
+
+			<Link
+				to="/checkout"
 				style={{
 					width: "100%",
 					display: "flex",
 					justifyContent: "flex-end",
 					marginTop:
 						appliedPromoMessage || invalidPromoMessage ? "1rem" : "1.9rem",
+					textDecoration: "none",
 				}}>
 				<button
 					style={{
@@ -170,7 +174,7 @@ export default function OrderSummary({
 					className="promoButton">
 					Proceed to checkout
 				</button>
-			</div>
+			</Link>
 		</div>
 	);
 }

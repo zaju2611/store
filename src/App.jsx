@@ -10,6 +10,9 @@ import ProductPage from "./pages/ProductPage";
 import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
 import Summary from "./pages/Summary";
+import Checkout from "./pages/Checkout";
+import PurchaseForm from "./pages/PurchaseForm";
+import Register from "./pages/Register";
 
 export default function App() {
 	const [categories, setCategories] = useState([]);
@@ -71,6 +74,9 @@ export default function App() {
 				<Route path="/4" element={<Others products={filteredProducts} />} />
 				<Route path="/product/:productId" element={<ProductPage />} />
 				<Route path="/summary" element={<Summary />} />
+				<Route path="/checkout" element={<Checkout />} />
+				<Route path="/purchase" element={<PurchaseForm />} />
+				<Route path="/register" element={<Register />} />
 			</Routes>
 			<Footer />
 		</div>
