@@ -1,5 +1,6 @@
 import { BiFace } from "react-icons/bi";
 import { RiLockPasswordFill } from "react-icons/ri";
+import ErrorForm from "../components/ErrorForm";
 
 export default function LoginButton() {
 	return (
@@ -10,7 +11,6 @@ export default function LoginButton() {
 				alignItems: "center",
 				width: "80%",
 			}}>
-			<h2 style={{ margin: "1.5rem" }}>I have account</h2>
 			<form
 				style={{
 					display: "flex",
@@ -18,22 +18,28 @@ export default function LoginButton() {
 					alignItems: "center",
 					width: "60%",
 				}}>
-				<label className="promo-label label">
-					<BiFace style={{ marginRight: ".5rem" }} />
-					<input
-						type="email"
-						className="promo"
-						placeholder="Your email adress"
-					/>
-				</label>
-				<label
-					className="promo-label label"
+				<div className="errorForm">
+					<label className="promo-label label">
+						<BiFace style={{ marginRight: ".5rem" }} />
+						<input
+							type="email"
+							className="promo"
+							placeholder="Your email adress"
+						/>
+					</label>
+					<ErrorForm children={"Incorrect email !"} />
+				</div>
+				<div
+					className="errorForm"
 					style={{
 						margin: "1rem 1rem 2rem 1rem",
 					}}>
-					<RiLockPasswordFill style={{ marginRight: ".5rem" }} />
-					<input type="password" className="promo" placeholder="Password" />
-				</label>
+					<label className="promo-label label">
+						<RiLockPasswordFill style={{ marginRight: ".5rem" }} />
+						<input type="password" className="promo" placeholder="Password" />
+					</label>
+					<ErrorForm children={"This field is required !"} />
+				</div>
 			</form>
 			<button className="accountBtns">Login</button>
 		</div>

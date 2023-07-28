@@ -13,6 +13,7 @@ import Summary from "./pages/Summary";
 import Checkout from "./pages/Checkout";
 import PurchaseForm from "./pages/PurchaseForm";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 export default function App() {
 	const [categories, setCategories] = useState([]);
@@ -77,6 +78,7 @@ export default function App() {
 				<Route path="/checkout" element={<Checkout />} />
 				<Route path="/purchase" element={<PurchaseForm />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/login" element={<Login />} />
 			</Routes>
 			<Footer />
 		</div>

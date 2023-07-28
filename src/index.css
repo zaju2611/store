@@ -259,6 +259,22 @@ a {
 	box-shadow: 0 0 10px 1px var(--grey);
 }
 
+.accountPanel {
+	position: absolute;
+	top: 90px;
+	right: 30px;
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+	box-shadow: 0 0 10px 1px var(--grey);
+	padding: 10px;
+	background-color: white;
+	overflow-y: auto;
+}
+
 .slideInShopping {
 	animation-name: slideIn;
 	animation-duration: 0.25s;
@@ -995,9 +1011,16 @@ tfoot {
 	align-items: center;
 	justify-content: center;
 	margin: 1rem;
+	margin-bottom: 0;
 	font-size: 1.5rem;
 }
-
+.errorForm {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
 @keyframes rotateImages {
 	0% {
 		opacity: 0;

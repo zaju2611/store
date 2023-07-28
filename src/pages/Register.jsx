@@ -7,7 +7,7 @@ export default function Register() {
 		<div className="pageContainer">
 			<div
 				style={{
-					width: "95%",
+					width: "70%",
 					display: "flex",
 					justifyContent: "center",
 					border: "1px solid var(--light-grey)",
@@ -28,7 +28,7 @@ export default function Register() {
 				<button
 					className="accountBtns"
 					style={{ width: "20%", backgroundColor: "var(--pink)" }}>
-					Next
+					Register
 				</button>
 				<div>
 					<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
