@@ -7,7 +7,7 @@ export default function PurchaseForm() {
 		<div className="pageContainer">
 			<div
 				style={{
-					width: "95%",
+					width: "70%",
 					display: "flex",
 					justifyContent: "center",
 					border: "1px solid var(--light-grey)",

@@ -1,11 +1,24 @@
+import { useState } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 import ErrorForm from "./ErrorForm";
+
 export default function FormInput({
 	icon,
 	placeholder,
 	errorText,
 	type = "text",
+	validator = null,
 }) {
+	const [value, setValue] = useState("");
+	const [isValid, setIsValid] = useState(true);
+
+	const handleChange = (event) => {
+		setValue(event.target.value);
+		if (validator) {
+			setIsValid(validator(event.target.value));
+		}
+	};
+
 	return (
 		<div className="errorForm">
 			<label className="promo-label label" style={{ width: "80%" }}>
@@ -15,10 +28,12 @@ export default function FormInput({
 					className="promo"
 					placeholder={placeholder}
 					required
+					value={value}
+					onChange={handleChange}
 				/>
 				<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
 			</label>
-			<ErrorForm children={errorText} />
+			{!isValid && <ErrorForm children={errorText} />}
 		</div>
 	);
 }

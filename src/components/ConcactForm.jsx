@@ -1,7 +1,7 @@
 import { BsPerson, BsFillPersonFill } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { BiPhone } from "react-icons/bi";
-import { FaStarOfLife } from "react-icons/fa";
+import FormInput from "./FormInput";
 export default function ConcactForm() {
 	return (
 		<form
@@ -13,40 +13,31 @@ export default function ConcactForm() {
 				margin: "2rem 2rem 1rem 2rem",
 			}}>
 			<div style={{ display: "flex", width: "100%" }}>
-				<label className="promo-label label">
-					<BsFillPersonFill style={{ marginRight: ".5rem" }} />
-					<input type="text" className="promo" placeholder="Name" required />
-					<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
-				</label>
-				<label className="promo-label label">
-					<BsPerson style={{ marginRight: ".5rem" }} />
-					<input type="text" className="promo" placeholder="Surname" required />
-					<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
-				</label>
-			</div>
-			<label
-				className="promo-label label"
-				style={{
-					width: "95%",
-				}}>
-				<MdOutlineEmail style={{ marginRight: ".5rem" }} />
-				<input type="email" className="promo" placeholder="Email" required />
-				<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
-			</label>
-			<label
-				className="promo-label label"
-				style={{
-					width: "95%",
-				}}>
-				<BiPhone style={{ marginRight: ".5rem" }} />
-				<input
-					type="tel"
-					className="promo"
-					placeholder="Phone number"
-					required
+				<FormInput
+					icon={<BsFillPersonFill style={{ marginRight: ".5rem" }} />}
+					placeholder="Name"
+					errorText="This field is required!"
+					type="text"
 				/>
-				<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
-			</label>
+				<FormInput
+					icon={<BsPerson style={{ marginRight: ".5rem" }} />}
+					placeholder="Surname"
+					errorText="This field is required!"
+					type="text"
+				/>
+			</div>
+			<FormInput
+				icon={<MdOutlineEmail style={{ marginRight: ".5rem" }} />}
+				placeholder="Email"
+				errorText="Incorrect email!"
+				type="email"
+			/>
+			<FormInput
+				icon={<BiPhone style={{ marginRight: ".5rem" }} />}
+				placeholder="Phone number"
+				errorText="This field is required!"
+				type="tel"
+			/>
 		</form>
 	);
 }
