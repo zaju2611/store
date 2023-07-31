@@ -1,77 +1,38 @@
 import { GoThreeBars, GoSearch, GoPerson } from "react-icons/go";
 import { BiShoppingBag } from "react-icons/bi";
 import logo from "../assets/images/logo.png";
-import { useReducer } from "react";
 import SearchBar from "./SearchBar";
 import NavList from "./NavList";
 import { Link } from "react-router-dom";
 import ShoppingCart from "./ShoppingCart";
-import { useSelector } from "react-redux";
-import { selectProductCount } from "../store";
+import { useSelector, useDispatch } from "react-redux";
 import AccountPanel from "./AccountPanel";
-
-const initialState = {
-	showSearchBar: false,
-	showNavBar: false,
-	showShoppingCart: false,
-	showAccountPanel: false,
-};
-
-const reducer = (state, action) => {
-	switch (action.type) {
-		case "TOGGLE_SEARCH_BAR":
-			return {
-				...state,
-				showSearchBar: !state.showSearchBar,
-				showNavBar: false,
-				showShoppingCart: false,
-				showAccountPanel: false,
-			};
-		case "TOGGLE_NAV_BAR":
-			return {
-				...state,
-				showNavBar: !state.showNavBar,
-				showSearchBar: false,
-				showShoppingCart: false,
-				showAccountPanel: false,
-			};
-		case "TOGGLE_SHOPPING_CART":
-			return {
-				...state,
-				showShoppingCart: !state.showShoppingCart,
-				showNavBar: false,
-				showSearchBar: false,
-				showAccountPanel: false,
-			};
-		case "TOGGLE_ACCOUNT_PANEL":
-			return {
-				...state,
-				showShoppingCart: false,
-				showNavBar: false,
-				showSearchBar: false,
-				showAccountPanel: !state.showAccountPanel,
-			};
-		default:
-			return state;
-	}
-};
+import {
+	toggleSearchBar,
+	toggleNavBar,
+	toggleShoppingCart,
+	toggleAccountPanel,
+	selectProductCount,
+} from "../store";
 
 export default function NavBar({ categories, onSearch }) {
-	const [state, dispatch] = useReducer(reducer, initialState);
+	const state = useSelector((state) => state.navigation);
 	const products = useSelector(selectProductCount);
+	const dispatch = useDispatch();
+
 	const handleSearchClick = () => {
-		dispatch({ type: "TOGGLE_SEARCH_BAR" });
+		dispatch(toggleSearchBar());
 	};
 
 	const handleNavClick = () => {
-		dispatch({ type: "TOGGLE_NAV_BAR" });
+		dispatch(toggleNavBar());
 	};
 
 	const handleShoppingCartClick = () => {
-		dispatch({ type: "TOGGLE_SHOPPING_CART" });
+		dispatch(toggleShoppingCart());
 	};
 	const handleAccountPanel = () => {
-		dispatch({ type: "TOGGLE_ACCOUNT_PANEL" });
+		dispatch(toggleAccountPanel());
 	};
 
 	return (

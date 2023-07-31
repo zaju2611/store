@@ -44,13 +44,51 @@ const productsSlice = createSlice({
 	},
 });
 
+const navigationSlice = createSlice({
+	name: "navigation",
+	initialState: {
+		showSearchBar: false,
+		showNavBar: false,
+		showShoppingCart: false,
+		showAccountPanel: false,
+	},
+	reducers: {
+		toggleSearchBar(state) {
+			state.showSearchBar = !state.showSearchBar;
+			state.showNavBar = false;
+			state.showShoppingCart = false;
+			state.showAccountPanel = false;
+		},
+		toggleNavBar(state) {
+			state.showSearchBar = false;
+			state.showNavBar = !state.showNavBar;
+			state.showShoppingCart = false;
+			state.showAccountPanel = false;
+		},
+		toggleShoppingCart(state) {
+			state.showSearchBar = false;
+			state.showNavBar = false;
+			state.showShoppingCart = !state.showShoppingCart;
+			state.showAccountPanel = false;
+		},
+		toggleAccountPanel(state) {
+			state.showSearchBar = false;
+			state.showNavBar = false;
+			state.showShoppingCart = false;
+			state.showAccountPanel = !state.showAccountPanel;
+		},
+	},
+});
+
 const store = configureStore({
 	reducer: {
 		products: productsSlice.reducer,
+		navigation: navigationSlice.reducer,
 	},
 });
 
 export const selectProducts = (state) => state.products;
+export const selectNavigation = (state) => state.navigation;
 
 const calculateTotal = (state) => {
 	return state.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -64,6 +102,14 @@ export const {
 	incrementProduct,
 	decrementProduct,
 } = productsSlice.actions;
+
+export const {
+	toggleSearchBar,
+	toggleNavBar,
+	toggleShoppingCart,
+	toggleAccountPanel,
+} = navigationSlice.actions;
+
 export const selectProductCount = createSelector(selectProducts, (products) =>
 	products.reduce((count, product) => count + product.quantity, 0)
 );
