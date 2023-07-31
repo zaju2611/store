@@ -13,12 +13,16 @@ import {
 	toggleShoppingCart,
 	toggleAccountPanel,
 	selectProductCount,
+	closeAll,
 } from "../store";
+import { useEffect } from "react";
+import { useCloseAll } from "../hooks/useCloseAll";
 
 export default function NavBar({ categories, onSearch }) {
 	const state = useSelector((state) => state.navigation);
 	const products = useSelector(selectProductCount);
 	const dispatch = useDispatch();
+	const { handleClose } = useCloseAll();
 
 	const handleSearchClick = () => {
 		dispatch(toggleSearchBar());
@@ -34,6 +38,21 @@ export default function NavBar({ categories, onSearch }) {
 	const handleAccountPanel = () => {
 		dispatch(toggleAccountPanel());
 	};
+
+	useEffect(() => {
+		const handleOutsideClick = (event) => {
+			const navWrapper = document.querySelector(".navWrapper");
+			if (navWrapper && !navWrapper.contains(event.target)) {
+				dispatch(closeAll());
+			}
+		};
+
+		document.addEventListener("click", handleOutsideClick);
+
+		return () => {
+			document.removeEventListener("click", handleOutsideClick);
+		};
+	}, [dispatch]);
 
 	return (
 		<div className="navWrapper">
@@ -55,7 +74,7 @@ export default function NavBar({ categories, onSearch }) {
 					<GoThreeBars className="icon" onClick={handleNavClick} />
 					<GoSearch className="icon" onClick={handleSearchClick} />
 				</div>
-				<Link className="logo" to="/">
+				<Link className="logo" to="/" onClick={handleClose}>
 					<img className="logoImg" src={logo} alt="logo" />
 				</Link>
 				<div className="menu-left-section">

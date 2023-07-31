@@ -3,8 +3,11 @@ import ShoppingCardItem from "./ShoppingCartItem";
 import ShoppingSummary from "./ShoppingSummary";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useCloseAll } from "../hooks/useCloseAll";
 
 export default function ShoppingCart() {
+	const { handleClose } = useCloseAll();
+
 	const productList = useSelector((state) => {
 		return state.products;
 	});
@@ -18,7 +21,7 @@ export default function ShoppingCart() {
 			<div className="shoppingCardList">{renderedProducts}</div>
 			<ShoppingSummary />
 			<FreeDeliveryBox />
-			<Link to="/summary">
+			<Link to="/summary" onClick={handleClose}>
 				<button className="buyButton">Summary</button>
 			</Link>
 		</div>

@@ -77,6 +77,12 @@ const navigationSlice = createSlice({
 			state.showShoppingCart = false;
 			state.showAccountPanel = !state.showAccountPanel;
 		},
+		closeAll(state) {
+			state.showSearchBar = false;
+			state.showNavBar = false;
+			state.showShoppingCart = false;
+			state.showAccountPanel = false;
+		},
 	},
 });
 
@@ -108,6 +114,7 @@ export const {
 	toggleNavBar,
 	toggleShoppingCart,
 	toggleAccountPanel,
+	closeAll,
 } = navigationSlice.actions;
 
 export const selectProductCount = createSelector(selectProducts, (products) =>

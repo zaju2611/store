@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { useCloseAll } from "../hooks/useCloseAll";
 
 export default function AccountPanel() {
+	const { handleClose } = useCloseAll();
+
 	return (
 		<div>
-			<Link to={"/register"}>
+			<Link to={"/register"} onClick={handleClose}>
 				<button
 					className="accountBtns"
 					style={{
@@ -15,7 +18,7 @@ export default function AccountPanel() {
 					Register
 				</button>
 			</Link>
-			<Link to={"/login"}>
+			<Link to={"/login"} onClick={handleClose}>
 				<button
 					className="accountBtns"
 					style={{
