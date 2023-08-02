@@ -14,6 +14,9 @@ import Checkout from "./pages/Checkout";
 import PurchaseForm from "./pages/PurchaseForm";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Account from "./pages/Account";
+import Favourite from "./pages/Favourite";
+import Contact from "./pages/Contact";
 
 export default function App() {
 	const [categories, setCategories] = useState([]);
@@ -79,6 +82,9 @@ export default function App() {
 				<Route path="/purchase" element={<PurchaseForm />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/account" element={<Account />} />
+				<Route path="/favourite" element={<Favourite />} />
+				<Route path="/contact" element={<Contact />} />
 			</Routes>
 			<Footer />
 		</div>

@@ -3,8 +3,10 @@ import { AiFillPhone } from "react-icons/ai";
 import { GoPerson } from "react-icons/go";
 import { BiShoppingBag } from "react-icons/bi";
 import { MdFavoriteBorder } from "react-icons/md";
-
+import { Link } from "react-router-dom";
+import { useCloseAll } from "../hooks/useCloseAll";
 export default function NavList({ categories, handleNavClick }) {
+	const { handleClose } = useCloseAll();
 	const renderedCategories = categories.map((category, index) => {
 		if (index === 0) {
 			return (
@@ -27,10 +29,19 @@ export default function NavList({ categories, handleNavClick }) {
 		<div className="navContainer">
 			<div className="navList">{renderedCategories}</div>
 			<div className="navIcons">
-				<GoPerson />
-				<BiShoppingBag />
-				<MdFavoriteBorder />
-				<AiFillPhone />
+				<Link to="/account" onClick={handleClose}>
+					<GoPerson />
+				</Link>
+
+				<Link to="/summary" onClick={handleClose}>
+					<BiShoppingBag />
+				</Link>
+				<Link to="/favourite" onClick={handleClose}>
+					<MdFavoriteBorder />
+				</Link>
+				<Link to="/contact" onClick={handleClose}>
+					<AiFillPhone />
+				</Link>
 			</div>
 		</div>
 	);
