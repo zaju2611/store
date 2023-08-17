@@ -1,10 +1,9 @@
 import { BsPerson, BsFillPersonFill } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { BiPhone } from "react-icons/bi";
-
 import { RiLockPasswordFill, RiLockPasswordLine } from "react-icons/ri";
-
 import FormInput from "./FormInput";
+
 export default function RegisterData() {
 	return (
 		<form
