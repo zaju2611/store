@@ -1024,6 +1024,7 @@ tfoot {
 	align-items: center;
 	width: 100%;
 }
+
 @keyframes rotateImages {
 	0% {
 		opacity: 0;

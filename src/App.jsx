@@ -19,6 +19,7 @@ import Favourite from "./pages/Favourite";
 import Contact from "./pages/Contact";
 import Returns from "./pages/Returns";
 import Complaint from "./pages/Complaint";
+import Terms from "./pages/Terms";
 
 export default function App() {
 	const [categories, setCategories] = useState([]);
@@ -89,6 +90,7 @@ export default function App() {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/returns" element={<Returns />} />
 				<Route path="/complaint" element={<Complaint />} />
+				<Route path="/terms" element={<Terms />} />
 			</Routes>
 			<Footer />
 		</div>

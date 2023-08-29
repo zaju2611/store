@@ -10,24 +10,22 @@ export default function Footer() {
 				<div className="footerBox">
 					<h4 className="footerBoxHeader">Obsługa klienta</h4>
 					<Link className="footerItem" to="/contact">
-						Kontakt
+						Contact
 					</Link>
 					<Link className="footerItem" to="/returns">
-						Zwroty
+						Returns
 					</Link>
 					<Link className="footerItem" to="/complaint">
-						Reklamacje
+						Complaints
 					</Link>
 				</div>
 				<div className="footerBox">
 					<h4 className="footerBoxHeader">Informacje</h4>
-					<Link className="footerItem" path="/aboutus">
-						O nas
+
+					<Link className="footerItem" to="/terms">
+						Terms
 					</Link>
-					<Link className="footerItem" path="/terms">
-						Regulamin
-					</Link>
-					<Link className="footerItem" path="/policy">
+					<Link className="footerItem" to="/policy">
 						Polityka prywatności
 					</Link>
 				</div>
