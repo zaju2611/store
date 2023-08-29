@@ -9,13 +9,13 @@ export default function Footer() {
 			<div className="footerContainer">
 				<div className="footerBox">
 					<h4 className="footerBoxHeader">Obsługa klienta</h4>
-					<Link className="footerItem" path="/contact">
+					<Link className="footerItem" to="/contact">
 						Kontakt
 					</Link>
-					<Link className="footerItem" path="/returns">
+					<Link className="footerItem" to="/returns">
 						Zwroty
 					</Link>
-					<Link className="footerItem" path="/complaints">
+					<Link className="footerItem" to="/complaints">
 						Reklamacje
 					</Link>
 				</div>
@@ -49,9 +49,7 @@ export default function Footer() {
 					</div>
 				</div>
 			</div>
-			<div className="copyright">
-				&copy; 2023 Pakuten. Wszelkie prawa zastrzeżone.
-			</div>
+			<div className="copyright">&copy; 2023 Zaja. All rights reserved.</div>
 		</div>
 	);
 }
