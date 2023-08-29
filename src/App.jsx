@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import Account from "./pages/Account";
 import Favourite from "./pages/Favourite";
 import Contact from "./pages/Contact";
+import Returns from "./pages/Returns";
 
 export default function App() {
 	const [categories, setCategories] = useState([]);
@@ -85,6 +86,7 @@ export default function App() {
 				<Route path="/account" element={<Account />} />
 				<Route path="/favourite" element={<Favourite />} />
 				<Route path="/contact" element={<Contact />} />
+				<Route path="/returns" element={<Returns />} />
 			</Routes>
 			<Footer />
 		</div>
