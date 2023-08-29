@@ -15,7 +15,7 @@ export default function Footer() {
 					<Link className="footerItem" to="/returns">
 						Zwroty
 					</Link>
-					<Link className="footerItem" to="/complaints">
+					<Link className="footerItem" to="/complaint">
 						Reklamacje
 					</Link>
 				</div>

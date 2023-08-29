@@ -60,7 +60,7 @@ export default function Returns() {
 							marginTop: "30px",
 						}}>
 						*Please note that DPD return labels are only available for mainland
-						England. For customers located within Northern Ireland we offer DPD
+						Poland. For customers located within Northern Ireland we offer DPD
 						courier collections only. To arrange a collection, please contact us
 						at support@zaja.com (or via chat or phone). Please include your
 						order number and specify a date for a collection with two days
