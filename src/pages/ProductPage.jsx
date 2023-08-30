@@ -7,6 +7,7 @@ import OtherCategories from "../components/OtherCategories";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../store";
 import { useState } from "react";
+import ContactProduct from "../components/ContactProduct";
 
 export default function ProductPage() {
 	const dispatch = useDispatch();
@@ -20,6 +21,8 @@ export default function ProductPage() {
 		productUpdated.quantity
 	);
 
+	const [showContactProduct, setShowContactProduct] = useState(false);
+
 	const handleProductAdd = (product) => {
 		const updatedProduct = { ...product, productsQuantity };
 		const action = addProduct({
@@ -31,6 +34,10 @@ export default function ProductPage() {
 
 	const handleCountChange = (count) => {
 		setProductsQuantity(count);
+	};
+
+	const handleCloseContact = () => {
+		setShowContactProduct(false);
 	};
 
 	return (
@@ -50,11 +57,19 @@ export default function ProductPage() {
 					</div>
 					<div className="toolsContainer">
 						<AiOutlineHeart className="tool" />
-						<SlEnvolopeLetter className="tool" />
+						<SlEnvolopeLetter
+							className="tool"
+							onClick={() => setShowContactProduct(true)}
+						/>
 					</div>
 				</div>
 			</div>
 			<OtherCategories />
+			{showContactProduct && (
+				<div className="overlay showOverlay">
+					<ContactProduct product={product} onClose={handleCloseContact} />
+				</div>
+			)}
 		</div>
 	);
 }
