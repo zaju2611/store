@@ -446,6 +446,7 @@ a {
 	margin: 5px;
 	font-size: 1.3rem;
 	transition: color 0.3s;
+	color: var(--grey);
 	cursor: pointer;
 }
 

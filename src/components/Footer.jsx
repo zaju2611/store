@@ -30,20 +30,44 @@ export default function Footer() {
 					</Link>
 				</div>
 				<div className="footerBox">
-					<h4 className="footerBoxHeader">Infolinia</h4>
+					<h4 className="footerBoxHeader">Helpline</h4>
 					<h5 className="footerItem">+48 55 221 22 0</h5>
 					<p className="footerItem">napisz do nas:</p>
 					<p className="footerItem">sklep@sklep.pl</p>
 				</div>
 				<div className="footerBox">
-					<h4 className="footerBoxHeader">Znajdź nas</h4>
+					<h4 className="footerBoxHeader">Find us</h4>
 					<div className="iconsRow">
-						<BsInstagram className="iconFooter" />
-						<ImFacebook2 className="iconFooter" />
+						<a
+							href="https://www.instagram.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="iconFooter">
+							<BsInstagram />
+						</a>
+						<a
+							href="https://www.facebook.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="iconFooter">
+							<ImFacebook2 />
+						</a>
 					</div>
 					<div className="iconsRow">
-						<FaTiktok className="iconFooter" />
-						<BsYoutube className="iconFooter" />
+						<a
+							href="https://www.tiktok.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="iconFooter">
+							<FaTiktok />
+						</a>
+						<a
+							href="https://www.youtube.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="iconFooter">
+							<BsYoutube />
+						</a>
 					</div>
 				</div>
 			</div>
