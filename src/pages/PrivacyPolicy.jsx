@@ -1,18 +1,10 @@
+import Header from "../components/Header";
+
 export default function PrivacyPolicy() {
 	return (
 		<div className="pageContainer">
-			<div
-				style={{
-					width: "70%",
-					maxWidth: "600px",
-					display: "flex",
-					justifyContent: "center",
-					border: "1px solid var(--light-grey)",
-					padding: "30px",
-				}}>
-				<h1 style={{ color: "var(--grey)" }}>Privacy Policy</h1>
-			</div>
-			<div style={{ width: "80%", marginTop: "50px" }}>
+			<Header>Privacy Policy</Header>
+			<div style={{ width: "80%" }}>
 				<h3>Privacy Policy</h3>
 				<p style={{ marginTop: "20px" }}>
 					Our top priority is to protect information and respect your privacy as

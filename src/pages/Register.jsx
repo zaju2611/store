@@ -1,20 +1,12 @@
 import AddressForm from "../components/AdressForm";
 import { FaStarOfLife } from "react-icons/fa";
 import RegisterData from "../components/RegisterData";
+import Header from "../components/Header";
 
 export default function Register() {
 	return (
 		<div className="pageContainer">
-			<div
-				style={{
-					width: "70%",
-					display: "flex",
-					justifyContent: "center",
-					border: "1px solid var(--light-grey)",
-					padding: "30px",
-				}}>
-				<h1 style={{ color: "var(--grey)" }}>Register</h1>
-			</div>
+			<Header>Register</Header>
 			<RegisterData />
 			<AddressForm />
 			<div

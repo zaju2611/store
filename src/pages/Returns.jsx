@@ -1,19 +1,11 @@
+import Header from "../components/Header";
+
 export default function Returns() {
 	return (
 		<div>
 			<div className="pageContainer">
-				<div
-					style={{
-						width: "70%",
-						maxWidth: "600px",
-						display: "flex",
-						justifyContent: "center",
-						border: "1px solid var(--light-grey)",
-						padding: "30px",
-					}}>
-					<h1 style={{ color: "var(--grey)" }}>How to return products?</h1>
-				</div>
-				<div style={{ width: "80%", marginTop: "50px" }}>
+				<Header>How to return products?</Header>
+				<div style={{ width: "80%" }}>
 					<p>
 						We offer a 30-day returns period for online purchases (from date of
 						receipt). Returned products must be in their original condition,

@@ -1,19 +1,11 @@
+import Header from "../components/Header";
+
 export default function Complaint() {
 	return (
 		<div>
 			<div className="pageContainer">
-				<div
-					style={{
-						width: "70%",
-						maxWidth: "600px",
-						display: "flex",
-						justifyContent: "center",
-						border: "1px solid var(--light-grey)",
-						padding: "30px",
-					}}>
-					<h1 style={{ color: "var(--grey)" }}>How do I make a complaint?</h1>
-				</div>
-				<div style={{ width: "80%", marginTop: "50px" }}>
+				<Header>How do I make a complaint?</Header>
+				<div style={{ width: "80%" }}>
 					<p>
 						All complaints concerning a product bought online must be reported
 						by creating a complaint request in your customer account ('My

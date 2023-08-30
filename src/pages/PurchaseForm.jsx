@@ -1,20 +1,12 @@
 import AddressForm from "../components/AdressForm";
 import ConcactForm from "../components/ConcactForm";
 import { FaStarOfLife } from "react-icons/fa";
+import Header from "../components/Header";
 
 export default function PurchaseForm() {
 	return (
 		<div className="pageContainer">
-			<div
-				style={{
-					width: "70%",
-					display: "flex",
-					justifyContent: "center",
-					border: "1px solid var(--light-grey)",
-					padding: "30px",
-				}}>
-				<h1 style={{ color: "var(--grey)" }}>Purchase Form</h1>
-			</div>
+			<Header>Purchase</Header>
 			<ConcactForm />
 			<AddressForm />
 			<div

@@ -2,28 +2,18 @@ import FormInput from "../components/FormInput";
 import { MdOutlineEmail } from "react-icons/md";
 import { BiPhone } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
+import Header from "../components/Header";
 
 export default function Contact() {
 	return (
 		<div className="pageContainer">
-			<div
-				style={{
-					width: "70%",
-					maxWidth: "600px",
-					display: "flex",
-					justifyContent: "center",
-					border: "1px solid var(--light-grey)",
-					padding: "30px",
-				}}>
-				<h1 style={{ color: "var(--grey)" }}>Contact</h1>
-			</div>
+			<Header>Contact</Header>
 			<div
 				style={{
 					width: "100%",
 					display: "flex",
 					alignItems: "center",
 					flexDirection: "column",
-					marginTop: "50px",
 				}}>
 				<div style={{ display: "flex" }}>
 					<FormInput

@@ -1,20 +1,11 @@
 import { Link } from "react-router-dom";
+import Header from "../components/Header";
 
 export default function Complaint() {
 	return (
 		<div className="pageContainer">
-			<div
-				style={{
-					width: "70%",
-					maxWidth: "600px",
-					display: "flex",
-					justifyContent: "center",
-					border: "1px solid var(--light-grey)",
-					padding: "30px",
-				}}>
-				<h1 style={{ color: "var(--grey)" }}>Terms</h1>
-			</div>
-			<div style={{ width: "80%", marginTop: "50px" }}>
+			<Header>Terms</Header>
+			<div style={{ width: "80%" }}>
 				<h3 style={{ marginBottom: "10px" }}>Online Shop Terms & Conditions</h3>
 				<ol>
 					<li>

@@ -12,7 +12,7 @@ export default function RegisterData() {
 				flexDirection: "column",
 				alignItems: "center",
 				width: "60%",
-				margin: "2rem 2rem 1rem 2rem",
+				margin: "0rem 2rem 1rem 2rem",
 			}}>
 			<div style={{ display: "flex", width: "100%" }}>
 				<FormInput
