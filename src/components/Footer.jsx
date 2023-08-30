@@ -8,7 +8,7 @@ export default function Footer() {
 		<div className="footer">
 			<div className="footerContainer">
 				<div className="footerBox">
-					<h4 className="footerBoxHeader">Obsługa klienta</h4>
+					<h4 className="footerBoxHeader">Support</h4>
 					<Link className="footerItem" to="/contact">
 						Contact
 					</Link>
@@ -20,13 +20,13 @@ export default function Footer() {
 					</Link>
 				</div>
 				<div className="footerBox">
-					<h4 className="footerBoxHeader">Informacje</h4>
+					<h4 className="footerBoxHeader">Information</h4>
 
 					<Link className="footerItem" to="/terms">
 						Terms
 					</Link>
 					<Link className="footerItem" to="/policy">
-						Polityka prywatności
+						Privacy Policy
 					</Link>
 				</div>
 				<div className="footerBox">
