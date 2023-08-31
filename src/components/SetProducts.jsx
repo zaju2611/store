@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function SetProducts({ products }) {
 	const [currentPage, setCurrentPage] = useState(1);
+	
 	const productPerPage = 12;
 
 	useEffect(() => {
@@ -34,6 +35,7 @@ export default function SetProducts({ products }) {
 			setCurrentPage(currentPage - 1);
 		}
 	};
+
 
 	if (renderedProducts.length === 0) {
 		return (

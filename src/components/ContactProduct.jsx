@@ -4,7 +4,7 @@ import { BiPhone } from "react-icons/bi";
 import { MdOutlineEmail } from "react-icons/md";
 import FormInput from "./FormInput";
 
-export default function ContactProduct({ product, onClose }) {
+export default function ContactProduct({ product, onClose, onClick }) {
 	return (
 		<div className="contactProductContainer">
 			<div
@@ -66,7 +66,8 @@ export default function ContactProduct({ product, onClose }) {
 						padding: "10px",
 						marginTop: "10px",
 						alignSelf: "flex-end",
-					}}>
+					}}
+					onClick={() => onClick()}>
 					Send
 				</button>
 			</div>

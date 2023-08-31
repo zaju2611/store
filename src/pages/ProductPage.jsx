@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../store";
 import { useState } from "react";
 import ContactProduct from "../components/ContactProduct";
+import SuccessComponent from "../components/SuccessComponent";
 
 export default function ProductPage() {
 	const dispatch = useDispatch();
@@ -22,6 +23,12 @@ export default function ProductPage() {
 	);
 
 	const [showContactProduct, setShowContactProduct] = useState(false);
+	const [showSuccessComponent, setShowSuccessComponent] = useState(false);
+	const [successMessage, setSuccessMessage] = useState("");
+
+	setTimeout(() => {
+		setShowSuccessComponent(false);
+	}, 5000);
 
 	const handleProductAdd = (product) => {
 		const updatedProduct = { ...product, productsQuantity };
@@ -30,6 +37,8 @@ export default function ProductPage() {
 			quantity: productsQuantity,
 		});
 		dispatch(action);
+		setSuccessMessage("Added to cart");
+		setShowSuccessComponent(true);
 	};
 
 	const handleCountChange = (count) => {
@@ -37,6 +46,16 @@ export default function ProductPage() {
 	};
 
 	const handleCloseContact = () => {
+		setShowContactProduct(false);
+	};
+
+	const handleCloseSuccessComponent = () => {
+		setShowSuccessComponent(false);
+	};
+
+	const handleShowSuccess = () => {
+		setSuccessMessage("Sent successfully");
+		setShowSuccessComponent(true);
 		setShowContactProduct(false);
 	};
 
@@ -67,8 +86,17 @@ export default function ProductPage() {
 			<OtherCategories />
 			{showContactProduct && (
 				<div className="overlay showOverlay">
-					<ContactProduct product={product} onClose={handleCloseContact} />
+					<ContactProduct
+						product={product}
+						onClose={handleCloseContact}
+						onClick={handleShowSuccess}
+					/>
 				</div>
+			)}
+			{showSuccessComponent && (
+				<SuccessComponent onClose={() => handleCloseSuccessComponent()}>
+					{successMessage}
+				</SuccessComponent>
 			)}
 		</div>
 	);
