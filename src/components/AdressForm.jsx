@@ -4,6 +4,31 @@ import { BiStreetView, BiCurrentLocation } from "react-icons/bi";
 import FormInput from "./FormInput";
 
 export default function AddressForm() {
+	const checkName = (input) => {
+		if (/^[a-zA-Z\s-]*$/.test(input)) {
+			return true;
+		}
+		return false;
+	};
+
+	const checkNumberWithApartment = (input) => {
+		if (/^\d+[A-Za-z]*\/\d+$/.test(input)) {
+			return true;
+		}
+
+		if (/^\d+[A-Za-z]*$/.test(input)) {
+			return true;
+		}
+		return false;
+	};
+
+	const checkZipCode = (input) => {
+		if (/^\d+-\d+$/.test(input)) {
+			return true;
+		}
+		return false;
+	};
+
 	return (
 		<form
 			style={{
@@ -20,25 +45,29 @@ export default function AddressForm() {
 				<FormInput
 					icon={<BiStreetView style={{ marginRight: ".5rem" }} />}
 					placeholder="Street"
-					errorText={"This field is required !"}
+					errorText={"Only letters!"}
+					validator={checkName}
 				/>
 				<FormInput
 					icon={<BsFillHouseFill style={{ marginRight: ".5rem" }} />}
 					placeholder="House/location number"
-					errorText={"This field is required !"}
+					errorText={"Incorrect form!"}
+					validator={checkNumberWithApartment}
 				/>
 			</div>
 			<FormInput
 				icon={<FaCity style={{ marginRight: ".5rem" }} />}
 				placeholder="City"
 				type="text"
-				errorText={"This field is required !"}
+				errorText={"Only letters!"}
+				validator={checkName}
 			/>
 			<FormInput
 				icon={<BiCurrentLocation style={{ marginRight: ".5rem" }} />}
 				placeholder="Zip code"
 				type="text"
-				errorText={"This field is required !"}
+				errorText={"Incorrect form!"}
+				validator={checkZipCode}
 			/>
 		</form>
 	);

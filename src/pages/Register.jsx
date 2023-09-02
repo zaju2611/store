@@ -2,8 +2,16 @@ import AddressForm from "../components/AdressForm";
 import { FaStarOfLife } from "react-icons/fa";
 import RegisterData from "../components/RegisterData";
 import Header from "../components/Header";
+import { useDispatch } from "react-redux";
+import { buttonClicked } from "../store";
 
 export default function Register() {
+	const dispatch = useDispatch();
+
+	const handleRegisterClick = () => {
+		dispatch(buttonClicked());
+	};
+
 	return (
 		<div className="pageContainer">
 			<Header>Register</Header>
@@ -19,7 +27,8 @@ export default function Register() {
 				}}>
 				<button
 					className="accountBtns"
-					style={{ width: "20%", backgroundColor: "var(--pink)" }}>
+					style={{ width: "20%", backgroundColor: "var(--pink)" }}
+					onClick={handleRegisterClick}>
 					Register
 				</button>
 				<div>

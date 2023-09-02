@@ -86,15 +86,29 @@ const navigationSlice = createSlice({
 	},
 });
 
+const validationSlice = createSlice({
+	name: "validation",
+	initialState: {
+		isButtonClicked: false,
+	},
+	reducers: {
+		buttonClicked(state) {
+			state.isButtonClicked = true;
+		},
+	},
+});
+
 const store = configureStore({
 	reducer: {
 		products: productsSlice.reducer,
 		navigation: navigationSlice.reducer,
+		validation: validationSlice.reducer,
 	},
 });
 
 export const selectProducts = (state) => state.products;
 export const selectNavigation = (state) => state.navigation;
+export const selectValidation = (state) => state.validation;
 
 const calculateTotal = (state) => {
 	return state.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -116,6 +130,8 @@ export const {
 	toggleAccountPanel,
 	closeAll,
 } = navigationSlice.actions;
+
+export const { buttonClicked } = validationSlice.actions;
 
 export const selectProductCount = createSelector(selectProducts, (products) =>
 	products.reduce((count, product) => count + product.quantity, 0)
