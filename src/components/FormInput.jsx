@@ -5,17 +5,20 @@ import ErrorForm from "./ErrorForm";
 export default function FormInput({
 	icon,
 	placeholder,
-	errorText,
+	errorText = "This field is required!",
 	type = "text",
 	validator = null,
+	compareTo = null,
 }) {
 	const [value, setValue] = useState("");
 	const [isValid, setIsValid] = useState(true);
 
 	const handleChange = (event) => {
 		setValue(event.target.value);
-		if (validator) {
-			setIsValid(validator(event.target.value));
+		if (!validator) {
+			setIsValid(event.target.value.trim() !== "");
+		} else {
+			setIsValid(validator(event.target.value, compareTo));
 		}
 	};
 
