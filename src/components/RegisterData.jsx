@@ -6,7 +6,7 @@ import FormInput from "./FormInput";
 import { useState } from "react";
 
 export default function RegisterData() {
-	const [repeatPassword, setRepeatPassword] = useState("");
+	const [repeatPassword, setRepeatPassword] = useState(null);
 	const checkCharacters = (input) => input.length > 3;
 	const checkEmail = (input) => {
 		const re =
@@ -25,6 +25,8 @@ export default function RegisterData() {
 		return true;
 	};
 	const comparePasswords = (input1, input2) => {
+		console.log(input1);
+		console.log(input2);
 		return input1 === input2;
 	};
 

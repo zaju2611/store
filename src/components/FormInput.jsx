@@ -47,7 +47,10 @@ export default function FormInput({
 				/>
 				<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
 			</label>
-			{!isValid && <ErrorForm children={errorText} />}
+			{!isValid && value === "" && (
+				<ErrorForm children="This field is required!" />
+			)}
+			{!isValid && value !== "" && <ErrorForm children={errorText} />}
 		</div>
 	);
 }

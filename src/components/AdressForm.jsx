@@ -5,7 +5,7 @@ import FormInput from "./FormInput";
 
 export default function AddressForm() {
 	const checkName = (input) => {
-		if (/^[a-zA-Z\s-]*$/.test(input)) {
+		if (/^[a-zA-Z-]+(\s[a-zA-Z-]+)*$/.test(input)) {
 			return true;
 		}
 		return false;
