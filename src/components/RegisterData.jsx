@@ -51,13 +51,13 @@ export default function RegisterData() {
 				<FormInput
 					icon={<BsFillPersonFill />}
 					placeholder="Name"
-					errorText="This field must have at least 3 characters!"
+					errorText="At least 3 characters!"
 					validator={checkCharacters}
 				/>
 				<FormInput
 					icon={<BsPerson />}
 					placeholder="Surname"
-					errorText="This field must have at least 3 characters!"
+					errorText="At least 3 characters!"
 					validator={checkCharacters}
 				/>
 			</div>
@@ -79,14 +79,14 @@ export default function RegisterData() {
 					icon={<RiLockPasswordFill />}
 					placeholder="Password"
 					type="password"
-					errorText="This field must have at least 8 characters and 1 number!"
+					errorText="At least 8 characters and 1 number!"
 					validator={checkPassword}
 				/>
 				<FormInput
 					icon={<RiLockPasswordLine />}
 					placeholder="Repeat password"
 					type="password"
-					errorText="Passwords are different"
+					errorText="Passwords are different!"
 					validator={comparePasswords}
 					compareTo={repeatPassword}
 				/>

@@ -1,4 +1,6 @@
-export default function ErrorForm({ children }) {
+export default function ErrorForm({ children, isVisible }) {
+	const visibilityStyle = isVisible ? "visible" : "hidden";
+
 	return (
 		<div
 			style={{
@@ -7,6 +9,7 @@ export default function ErrorForm({ children }) {
 				fontSize: ".7rem",
 				padding: "3px 15px",
 				textAlign: "center",
+				visibility: visibilityStyle,
 			}}>
 			{children}
 		</div>

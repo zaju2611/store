@@ -15,6 +15,7 @@ export default function FormInput({
 }) {
 	const [value, setValue] = useState("");
 	const [isValid, setIsValid] = useState(true);
+	const [currentErrorText, setCurrentErrorText] = useState(errorText);
 	const { isButtonClicked } = useSelector(selectValidation);
 
 	const handleChange = (event) => {
@@ -23,13 +24,22 @@ export default function FormInput({
 
 	useEffect(() => {
 		if (isButtonClicked) {
-			if (!validator) {
-				setIsValid(value.trim() !== "");
-			} else {
-				setIsValid(validator(value, compareTo));
+			if (validator) {
+				const validationResult = validator(value, compareTo);
+				setIsValid(validationResult);
+				setCurrentErrorText(
+					value.trim() === "" ? "This field is required!" : errorText
+				);
 			}
 		}
-	}, [isButtonClicked, value, validator, compareTo]);
+	}, [
+		isButtonClicked,
+		value,
+		validator,
+		compareTo,
+		errorText,
+		currentErrorText,
+	]);
 
 	return (
 		<div className="errorForm">
@@ -45,11 +55,8 @@ export default function FormInput({
 				/>
 				<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
 			</label>
-			{!isValid && (
-				<ErrorForm
-					children={value === "" ? "This field is required!" : errorText}
-				/>
-			)}
+
+			<ErrorForm children={currentErrorText} isVisible={!isValid} />
 		</div>
 	);
 }
