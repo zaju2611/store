@@ -25,8 +25,6 @@ export default function RegisterData() {
 		return true;
 	};
 	const comparePasswords = (input1, input2) => {
-		console.log(input1);
-		console.log(input2);
 		return input1 === input2;
 	};
 

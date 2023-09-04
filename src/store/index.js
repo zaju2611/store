@@ -95,6 +95,9 @@ const validationSlice = createSlice({
 		buttonClicked(state) {
 			state.isButtonClicked = true;
 		},
+		resetButtonClicked(state) {
+			state.isButtonClicked = false;
+		},
 	},
 });
 
@@ -131,7 +134,7 @@ export const {
 	closeAll,
 } = navigationSlice.actions;
 
-export const { buttonClicked } = validationSlice.actions;
+export const { buttonClicked, resetButtonClicked } = validationSlice.actions;
 
 export const selectProductCount = createSelector(selectProducts, (products) =>
 	products.reduce((count, product) => count + product.quantity, 0)

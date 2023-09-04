@@ -25,10 +25,8 @@ export default function FormInput({
 		if (isButtonClicked) {
 			if (!validator) {
 				setIsValid(value.trim() !== "");
-				console.log("hi");
 			} else {
 				setIsValid(validator(value, compareTo));
-				console.log("asdas");
 			}
 		}
 	}, [isButtonClicked, value, validator, compareTo]);
@@ -47,10 +45,11 @@ export default function FormInput({
 				/>
 				<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
 			</label>
-			{!isValid && value === "" && (
-				<ErrorForm children="This field is required!" />
+			{!isValid && (
+				<ErrorForm
+					children={value === "" ? "This field is required!" : errorText}
+				/>
 			)}
-			{!isValid && value !== "" && <ErrorForm children={errorText} />}
 		</div>
 	);
 }

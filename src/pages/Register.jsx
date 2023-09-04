@@ -3,13 +3,18 @@ import { FaStarOfLife } from "react-icons/fa";
 import RegisterData from "../components/RegisterData";
 import Header from "../components/Header";
 import { useDispatch } from "react-redux";
-import { buttonClicked } from "../store";
+import { buttonClicked, resetButtonClicked } from "../store";
 
 export default function Register() {
 	const dispatch = useDispatch();
 
 	const handleRegisterClick = () => {
 		dispatch(buttonClicked());
+
+		setTimeout(() => {
+			dispatch(resetButtonClicked());
+			console.log("huje");
+		}, 300);
 	};
 
 	return (
