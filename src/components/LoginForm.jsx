@@ -1,8 +1,23 @@
 import { BiFace } from "react-icons/bi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import FormInput from "./FormInput";
+import { useDispatch } from "react-redux";
+import { buttonClicked, resetButtonClicked } from "../store";
+import { useEmailValidation } from "../hooks/useEmailValidation";
 
 export default function LoginForm() {
+	const { checkEmail } = useEmailValidation();
+
+	const dispatch = useDispatch();
+
+	const handleRegisterClick = () => {
+		dispatch(buttonClicked());
+
+		setTimeout(() => {
+			dispatch(resetButtonClicked());
+		}, 300);
+	};
+
 	return (
 		<div
 			style={{
@@ -23,7 +38,7 @@ export default function LoginForm() {
 					placeholder="Your email address"
 					errorText="Incorrect email!"
 					type="email"
-					validator={(value) => value.trim().length > 0}
+					validator={checkEmail}
 				/>
 				<FormInput
 					icon={<RiLockPasswordFill />}
@@ -36,7 +51,8 @@ export default function LoginForm() {
 			<button
 				className="accountBtns"
 				style={{ marginTop: "20px" }}
-				type="submit">
+				type="submit"
+				onClick={handleRegisterClick}>
 				Login
 			</button>
 		</div>

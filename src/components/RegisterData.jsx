@@ -3,40 +3,17 @@ import { MdOutlineEmail } from "react-icons/md";
 import { BiPhone } from "react-icons/bi";
 import { RiLockPasswordFill, RiLockPasswordLine } from "react-icons/ri";
 import FormInput from "./FormInput";
-import { useState } from "react";
+import { usePhoneValidation } from "../hooks/usePhoneValidation";
+import { useEmailValidation } from "../hooks/useEmailValidation";
+import { usePasswordValidation } from "../hooks/usePasswordValidation";
+import { useCharacterValidation } from "../hooks/useCharacterValidation";
 
 export default function RegisterData() {
-	const [repeatPassword, setRepeatPassword] = useState(null);
-	const checkCharacters = (input) => input.length > 3;
-	const checkEmail = (input) => {
-		const re =
-			/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|([a-zA-Z\-0-9]+\.[a-zA-Z]{2,3}))$/;
-		return re.test(input);
-	};
-	const checkPassword = (input) => {
-		if (input.length < 8) {
-			return false;
-		}
-		const digitRegex = /[0-9]/;
-		if (!digitRegex.test(input)) {
-			return false;
-		}
-		setRepeatPassword(input);
-		return true;
-	};
-	const comparePasswords = (input1, input2) => {
-		return input1 === input2;
-	};
-
-	const checkPhoneNumber = (input) => {
-		const cleanedPhoneNumber = input.replace(/[^\d]/g, "");
-		if (cleanedPhoneNumber.length === 9) {
-			if (/^\d+$/.test(cleanedPhoneNumber)) {
-				return true;
-			}
-		}
-		return false;
-	};
+	const { checkCharacters } = useCharacterValidation();
+	const { checkEmail } = useEmailValidation();
+	const { checkPassword, repeatPassword, comparePasswords } =
+		usePasswordValidation();
+	const { checkPhoneNumber } = usePhoneValidation();
 
 	return (
 		<form

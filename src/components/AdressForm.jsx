@@ -2,32 +2,14 @@ import { BsFillHouseFill } from "react-icons/bs";
 import { FaCity } from "react-icons/fa";
 import { BiStreetView, BiCurrentLocation } from "react-icons/bi";
 import FormInput from "./FormInput";
+import { useNameValidation } from "../hooks/useNameValidation";
+import { useAddressValidation } from "../hooks/useAddressValidation";
+import { useZipCodeValidation } from "../hooks/useZipCodeValidation";
 
 export default function AddressForm() {
-	const checkName = (input) => {
-		if (/^[a-zA-Z-]+(\s[a-zA-Z-]+)*$/.test(input)) {
-			return true;
-		}
-		return false;
-	};
-
-	const checkNumberWithApartment = (input) => {
-		if (/^\d+[A-Za-z]*\/\d+$/.test(input)) {
-			return true;
-		}
-
-		if (/^\d+[A-Za-z]*$/.test(input)) {
-			return true;
-		}
-		return false;
-	};
-
-	const checkZipCode = (input) => {
-		if (/^\d+-\d+$/.test(input)) {
-			return true;
-		}
-		return false;
-	};
+	const { checkName } = useNameValidation();
+	const { checkNumberWithApartment } = useAddressValidation();
+	const { checkZipCode } = useZipCodeValidation();
 
 	return (
 		<form

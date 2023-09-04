@@ -13,7 +13,6 @@ export default function Register() {
 
 		setTimeout(() => {
 			dispatch(resetButtonClicked());
-			console.log("huje");
 		}, 300);
 	};
 
