@@ -3,8 +3,15 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { BiPhone } from "react-icons/bi";
 import { MdOutlineEmail } from "react-icons/md";
 import FormInput from "./FormInput";
+import { usePhoneValidation } from "../hooks/usePhoneValidation";
+import { useEmailValidation } from "../hooks/useEmailValidation";
+import { useCharacterValidation } from "../hooks/useCharacterValidation";
 
 export default function ContactProduct({ product, onClose, onClick }) {
+	const { checkCharacters } = useCharacterValidation();
+	const { checkEmail } = useEmailValidation();
+	const { checkPhoneNumber } = usePhoneValidation();
+
 	return (
 		<div className="contactProductContainer">
 			<div
@@ -34,12 +41,14 @@ export default function ContactProduct({ product, onClose, onClick }) {
 				<FormInput
 					icon={<BsFillPersonFill />}
 					placeholder="Name"
-					errorText="This field is required!"
+					errorText="At least 3 characters!"
+					validator={checkCharacters}
 				/>
 				<FormInput
 					icon={<BiPhone />}
 					placeholder="Phone number"
-					errorText="This field is required!"
+					errorText="Incorrect phone number!"
+					validator={checkPhoneNumber}
 				/>
 			</div>
 			<FormInput
@@ -47,6 +56,7 @@ export default function ContactProduct({ product, onClose, onClick }) {
 				placeholder="Email"
 				type="email"
 				errorText="Incorrect email address!"
+				validator={checkEmail}
 			/>
 			<p style={{ margin: "15px" }}>Question: </p>
 			<textarea

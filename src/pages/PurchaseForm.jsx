@@ -2,8 +2,20 @@ import AddressForm from "../components/AdressForm";
 import ConcactForm from "../components/ConcactForm";
 import { FaStarOfLife } from "react-icons/fa";
 import Header from "../components/Header";
+import { useDispatch } from "react-redux";
+import { buttonClicked, resetButtonClicked } from "../store";
 
 export default function PurchaseForm() {
+	const dispatch = useDispatch();
+
+	const handleSubmitClick = () => {
+		dispatch(buttonClicked());
+
+		setTimeout(() => {
+			dispatch(resetButtonClicked());
+		}, 300);
+	};
+
 	return (
 		<div className="pageContainer">
 			<Header>Purchase</Header>
@@ -19,7 +31,8 @@ export default function PurchaseForm() {
 				}}>
 				<button
 					className="accountBtns"
-					style={{ width: "20%", backgroundColor: "var(--pink)" }}>
+					style={{ width: "20%", backgroundColor: "var(--pink)" }}
+					onClick={handleSubmitClick}>
 					Next
 				</button>
 				<div>

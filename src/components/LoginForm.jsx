@@ -4,10 +4,11 @@ import FormInput from "./FormInput";
 import { useDispatch } from "react-redux";
 import { buttonClicked, resetButtonClicked } from "../store";
 import { useEmailValidation } from "../hooks/useEmailValidation";
+import { usePasswordValidation } from "../hooks/usePasswordValidation";
 
 export default function LoginForm() {
 	const { checkEmail } = useEmailValidation();
-
+	const { checkPassword } = usePasswordValidation();
 	const dispatch = useDispatch();
 
 	const handleRegisterClick = () => {
@@ -43,9 +44,9 @@ export default function LoginForm() {
 				<FormInput
 					icon={<RiLockPasswordFill />}
 					placeholder="Password"
-					errorText="This field is required!"
+					errorText="Incorrect password!"
 					type="password"
-					validator={(value) => value.trim().length > 0}
+					validator={checkPassword}
 				/>
 			</form>
 			<button

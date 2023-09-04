@@ -2,7 +2,15 @@ import { BsPerson, BsFillPersonFill } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { BiPhone } from "react-icons/bi";
 import FormInput from "./FormInput";
+import { usePhoneValidation } from "../hooks/usePhoneValidation";
+import { useEmailValidation } from "../hooks/useEmailValidation";
+import { useCharacterValidation } from "../hooks/useCharacterValidation";
+
 export default function ConcactForm() {
+	const { checkCharacters } = useCharacterValidation();
+	const { checkEmail } = useEmailValidation();
+	const { checkPhoneNumber } = usePhoneValidation();
+
 	return (
 		<form
 			style={{
@@ -16,27 +24,31 @@ export default function ConcactForm() {
 				<FormInput
 					icon={<BsFillPersonFill style={{ marginRight: ".5rem" }} />}
 					placeholder="Name"
-					errorText="This field is required!"
+					errorText="At least 3 characters!"
 					type="text"
+					validator={checkCharacters}
 				/>
 				<FormInput
 					icon={<BsPerson style={{ marginRight: ".5rem" }} />}
 					placeholder="Surname"
-					errorText="This field is required!"
+					errorText="At least 3 characters!"
 					type="text"
+					validator={checkCharacters}
 				/>
 			</div>
 			<FormInput
 				icon={<MdOutlineEmail style={{ marginRight: ".5rem" }} />}
 				placeholder="Email"
-				errorText="Incorrect email!"
+				errorText="Incorrect email address!"
 				type="email"
+				validator={checkEmail}
 			/>
 			<FormInput
 				icon={<BiPhone style={{ marginRight: ".5rem" }} />}
 				placeholder="Phone number"
-				errorText="This field is required!"
+				errorText="Incorrect phone number!"
 				type="tel"
+				validator={checkPhoneNumber}
 			/>
 		</form>
 	);
