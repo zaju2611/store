@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { selectProducts } from "../store";
-import { selectTotalPrice } from "../store";
+import { selectTotalPrice } from "../store/selectors/productsSelectors";
+import { selectProducts } from "../store/reducers/productsSlice";
+
 import SummaryItem from "../components/SummaryItem";
 import DeliveryComponent from "../components/DeliveryComponent";
 import PaymentComponent from "../components/PaymentComponent";

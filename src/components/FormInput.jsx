@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 import ErrorForm from "./ErrorForm";
 import { useSelector } from "react-redux";
-import { selectValidation } from "../store";
+import { selectValidation } from "../store/reducers/validationSlice";
 import { useEffect } from "react";
 
 export default function FormInput({

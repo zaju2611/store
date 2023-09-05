@@ -2,7 +2,10 @@ import { BiFace } from "react-icons/bi";
 import { RiLockPasswordFill } from "react-icons/ri";
 import FormInput from "./FormInput";
 import { useDispatch } from "react-redux";
-import { buttonClicked, resetButtonClicked } from "../store";
+import {
+	buttonClicked,
+	resetButtonClicked,
+} from "../store/reducers/validationSlice";
 import { useEmailValidation } from "../hooks/useEmailValidation";
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 
