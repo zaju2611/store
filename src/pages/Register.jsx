@@ -3,7 +3,10 @@ import { FaStarOfLife } from "react-icons/fa";
 import RegisterData from "../components/RegisterData";
 import Header from "../components/Header";
 import { useDispatch } from "react-redux";
-import { buttonClicked, resetButtonClicked } from "../store";
+import {
+	buttonClicked,
+	resetButtonClicked,
+} from "../store/slices/validationSlice";
 
 export default function Register() {
 	const dispatch = useDispatch();

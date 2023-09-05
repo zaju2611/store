@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { removeProduct } from "../store";
+import { removeProduct } from "../store/reducers/productsSlice";
 
 export function useRemoveProduct(product) {
 	const dispatch = useDispatch();

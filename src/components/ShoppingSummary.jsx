@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectTotalPrice } from "../store";
+import { selectTotalPrice } from "../store/selectors/productsSelectors";
 
 export default function ShoppingSummary() {
 	const totalPrice = useSelector(selectTotalPrice);

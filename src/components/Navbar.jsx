@@ -12,15 +12,15 @@ import {
 	toggleNavBar,
 	toggleShoppingCart,
 	toggleAccountPanel,
-	selectProductCount,
 	closeAll,
-} from "../store";
+} from "../store/reducers/navigationSlice";
+import { selectProducts } from "../store/selectors/productsSelectors";
 import { useEffect } from "react";
 import { useCloseAll } from "../hooks/useCloseAll";
 
 export default function NavBar({ categories, onSearch }) {
 	const state = useSelector((state) => state.navigation);
-	const products = useSelector(selectProductCount);
+	const products = useSelector(selectProducts);
 	const dispatch = useDispatch();
 	const { handleClose } = useCloseAll();
 

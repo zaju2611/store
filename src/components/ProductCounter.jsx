@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { BsPlus } from "react-icons/bs";
 import { HiOutlineMinusSm } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { decrementProduct, incrementProduct } from "../store";
+import {
+	decrementProduct,
+	incrementProduct,
+} from "../store/reducers/productsSlice";
 
 export default function ProductCounter({ product, onCountChange, className }) {
 	const [count, setCount] = useState(product.quantity);

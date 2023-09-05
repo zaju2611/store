@@ -3,7 +3,10 @@ import ConcactForm from "../components/ConcactForm";
 import { FaStarOfLife } from "react-icons/fa";
 import Header from "../components/Header";
 import { useDispatch } from "react-redux";
-import { buttonClicked, resetButtonClicked } from "../store";
+import {
+	buttonClicked,
+	resetButtonClicked,
+} from "../store/slices/validationSlice";
 
 export default function PurchaseForm() {
 	const dispatch = useDispatch();
