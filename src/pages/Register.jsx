@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import {
 	buttonClicked,
 	resetButtonClicked,
-} from "../store/slices/validationSlice";
+} from "../store/reducers/validationSlice";
 
 export default function Register() {
 	const dispatch = useDispatch();

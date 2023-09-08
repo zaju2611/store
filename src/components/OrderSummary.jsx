@@ -68,7 +68,7 @@ export default function OrderSummary({
 				: value + totalDeliveryCost;
 
 		setTotalAmount(totalAmountWithPromo);
-	}, [value, totalDeliveryCost]);
+	}, [value, totalDeliveryCost, promoCode]);
 
 	return (
 		<div style={{ margin: "20px", width: "50%" }}>

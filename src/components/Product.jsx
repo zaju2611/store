@@ -1,7 +1,7 @@
 import { AiOutlineHeart } from "react-icons/ai";
 import { useRedirection } from "../hooks/useRedirection";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../store/slices/productsSlice";
+import { addProduct } from "../store/reducers/productsSlice";
 import { useState } from "react";
 import SuccessComponent from "./SuccessComponent";
 

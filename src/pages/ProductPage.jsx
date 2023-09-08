@@ -5,7 +5,7 @@ import ImageSlider from "../components/ImageSlider";
 import ProductCounter from "../components/ProductCounter";
 import OtherCategories from "../components/OtherCategories";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../store/slices/productsSlice";
+import { addProduct } from "../store/reducers/productsSlice";
 import { useState } from "react";
 import ContactProduct from "../components/ContactProduct";
 import SuccessComponent from "../components/SuccessComponent";
