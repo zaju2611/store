@@ -12,6 +12,7 @@ export default function FormInput({
 	type = "text",
 	validator = null,
 	compareTo = null,
+	onChange,
 }) {
 	const [value, setValue] = useState("");
 	const [isValid, setIsValid] = useState(true);
@@ -20,6 +21,7 @@ export default function FormInput({
 
 	const handleChange = (event) => {
 		setValue(event.target.value);
+		onChange(event);
 	};
 
 	useEffect(() => {
