@@ -7,13 +7,43 @@ import {
 	buttonClicked,
 	resetButtonClicked,
 } from "../store/reducers/validationSlice";
+import { useState } from "react";
+import { auth } from "../firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function Register() {
 	const dispatch = useDispatch();
 
-	const handleRegisterClick = () => {
-		dispatch(buttonClicked());
+	const [formData, setFormData] = useState({
+		name: "",
+		surname: "",
+		email: "",
+		phoneNumber: "",
+		password: "",
+		repeatPassword: "",
+	});
 
+	const [addressData, setAddressData] = useState({
+		street: "",
+		houseNumber: "",
+		city: "",
+		zipCode: "",
+	});
+
+	const signUp = (e) => {
+		e.preventDefault();
+		createUserWithEmailAndPassword(auth, formData.email, formData.password)
+			.then((userCredential) => {
+				console.log(userCredential);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+
+	const handleRegisterClick = (e) => {
+		dispatch(buttonClicked());
+		signUp(e);
 		setTimeout(() => {
 			dispatch(resetButtonClicked());
 		}, 300);
@@ -22,8 +52,8 @@ export default function Register() {
 	return (
 		<div className="pageContainer">
 			<Header>Register</Header>
-			<RegisterData />
-			<AddressForm />
+			<RegisterData formData={formData} setFormData={setFormData} />
+			<AddressForm addressData={addressData} setAddressData={setAddressData} />
 			<div
 				style={{
 					display: "flex",

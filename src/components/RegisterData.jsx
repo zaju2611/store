@@ -8,7 +8,8 @@ import { useEmailValidation } from "../hooks/useEmailValidation";
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { useCharacterValidation } from "../hooks/useCharacterValidation";
 
-export default function RegisterData() {
+export default function RegisterData(props) {
+	const { formData, setFormData } = props;
 	const { checkCharacters } = useCharacterValidation();
 	const { checkEmail } = useEmailValidation();
 	const { checkPassword, repeatPassword, comparePasswords } =
@@ -30,12 +31,18 @@ export default function RegisterData() {
 					placeholder="Name"
 					errorText="At least 3 characters!"
 					validator={checkCharacters}
+					value={formData.name}
+					onChange={(e) => setFormData({ ...formData, name: e.target.value })}
 				/>
 				<FormInput
 					icon={<BsPerson />}
 					placeholder="Surname"
 					errorText="At least 3 characters!"
 					validator={checkCharacters}
+					value={formData.surname}
+					onChange={(e) =>
+						setFormData({ ...formData, surname: e.target.value })
+					}
 				/>
 			</div>
 			<FormInput
@@ -44,12 +51,18 @@ export default function RegisterData() {
 				type="email"
 				errorText="Incorrect email address!"
 				validator={checkEmail}
+				value={formData.email}
+				onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 			/>
 			<FormInput
 				icon={<BiPhone />}
 				placeholder="Phone number"
 				errorText="Incorrect phone number!"
 				validator={checkPhoneNumber}
+				value={formData.phoneNumber}
+				onChange={(e) =>
+					setFormData({ ...formData, phoneNumber: e.target.value })
+				}
 			/>
 			<div style={{ display: "flex", width: "100%" }}>
 				<FormInput
@@ -58,6 +71,10 @@ export default function RegisterData() {
 					type="password"
 					errorText="At least 8 characters and 1 number!"
 					validator={checkPassword}
+					value={formData.password}
+					onChange={(e) =>
+						setFormData({ ...formData, password: e.target.value })
+					}
 				/>
 				<FormInput
 					icon={<RiLockPasswordLine />}
@@ -66,6 +83,10 @@ export default function RegisterData() {
 					errorText="Passwords are different!"
 					validator={comparePasswords}
 					compareTo={repeatPassword}
+					value={formData.repeatPassword}
+					onChange={(e) =>
+						setFormData({ ...formData, repeatPassword: e.target.value })
+					}
 				/>
 			</div>
 		</form>

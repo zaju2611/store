@@ -6,7 +6,8 @@ import { useNameValidation } from "../hooks/useNameValidation";
 import { useAddressValidation } from "../hooks/useAddressValidation";
 import { useZipCodeValidation } from "../hooks/useZipCodeValidation";
 
-export default function AddressForm() {
+export default function AddressForm(props) {
+	const { addressData, setAddressData } = props;
 	const { checkName } = useNameValidation();
 	const { checkNumberWithApartment } = useAddressValidation();
 	const { checkZipCode } = useZipCodeValidation();
@@ -29,12 +30,20 @@ export default function AddressForm() {
 					placeholder="Street"
 					errorText={"Only letters!"}
 					validator={checkName}
+					value={addressData.name}
+					onChange={(e) =>
+						setAddressData({ ...addressData, street: e.target.value })
+					}
 				/>
 				<FormInput
 					icon={<BsFillHouseFill style={{ marginRight: ".5rem" }} />}
 					placeholder="House/location number"
 					errorText={"Incorrect form!"}
 					validator={checkNumberWithApartment}
+					value={addressData.houseNumber}
+					onChange={(e) =>
+						setAddressData({ ...addressData, houseNumber: e.target.value })
+					}
 				/>
 			</div>
 			<FormInput
@@ -43,6 +52,10 @@ export default function AddressForm() {
 				type="text"
 				errorText={"Only letters!"}
 				validator={checkName}
+				value={addressData.city}
+				onChange={(e) =>
+					setAddressData({ ...addressData, city: e.target.value })
+				}
 			/>
 			<FormInput
 				icon={<BiCurrentLocation style={{ marginRight: ".5rem" }} />}
@@ -50,6 +63,10 @@ export default function AddressForm() {
 				type="text"
 				errorText={"Incorrect form!"}
 				validator={checkZipCode}
+				value={addressData.zipCode}
+				onChange={(e) =>
+					setAddressData({ ...addressData, zipCode: e.target.value })
+				}
 			/>
 		</form>
 	);
