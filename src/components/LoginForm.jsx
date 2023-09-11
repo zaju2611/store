@@ -6,9 +6,31 @@ import { useEmailValidation } from "../hooks/useEmailValidation";
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 
 export default function LoginForm(props) {
-	const { email, setEmail, password, setPassword, handleRegisterClick } = props;
+	const {
+		email,
+		setEmail,
+		password,
+		setPassword,
+		handleRegisterClick,
+		onErrorCount,
+	} = props;
 	const { checkEmail } = useEmailValidation();
 	const { checkPassword } = usePasswordValidation();
+
+	const validateForm = (e) => {
+		let errors = 0;
+		if (!checkEmail(email)) {
+			errors++;
+		}
+
+		if (!checkPassword(password)) {
+			errors++;
+		}
+
+		onErrorCount(errors);
+
+		handleRegisterClick(e);
+	};
 
 	return (
 		<div
@@ -48,7 +70,7 @@ export default function LoginForm(props) {
 				className="accountBtns"
 				style={{ marginTop: "20px" }}
 				type="submit"
-				onClick={handleRegisterClick}>
+				onClick={validateForm}>
 				Login
 			</button>
 		</div>

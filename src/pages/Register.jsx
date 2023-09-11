@@ -30,6 +30,9 @@ export default function Register() {
 		zipCode: "",
 	});
 
+	const [validationRegisterErrors, setValidationRegisterErrors] = useState(0);
+	const [valiationAddressErrors, setValidationAddressErrors] = useState(0);
+
 	const signUp = (e) => {
 		e.preventDefault();
 		createUserWithEmailAndPassword(auth, formData.email, formData.password)
@@ -43,7 +46,9 @@ export default function Register() {
 
 	const handleRegisterClick = (e) => {
 		dispatch(buttonClicked());
-		signUp(e);
+		if (validationRegisterErrors === 0 && valiationAddressErrors === 0) {
+			signUp(e);
+		}
 		setTimeout(() => {
 			dispatch(resetButtonClicked());
 		}, 300);
@@ -52,8 +57,16 @@ export default function Register() {
 	return (
 		<div className="pageContainer">
 			<Header>Register</Header>
-			<RegisterData formData={formData} setFormData={setFormData} />
-			<AddressForm addressData={addressData} setAddressData={setAddressData} />
+			<RegisterData
+				formData={formData}
+				setFormData={setFormData}
+				onErrorCount={setValidationRegisterErrors}
+			/>
+			<AddressForm
+				addressData={addressData}
+				setAddressData={setAddressData}
+				onErrorCount={setValidationAddressErrors}
+			/>
 			<div
 				style={{
 					display: "flex",

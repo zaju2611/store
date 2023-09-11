@@ -7,10 +7,30 @@ import { useAddressValidation } from "../hooks/useAddressValidation";
 import { useZipCodeValidation } from "../hooks/useZipCodeValidation";
 
 export default function AddressForm(props) {
-	const { addressData, setAddressData } = props;
+	const { addressData, setAddressData, onErrorCount } = props;
 	const { checkName } = useNameValidation();
 	const { checkNumberWithApartment } = useAddressValidation();
 	const { checkZipCode } = useZipCodeValidation();
+
+	const validateFormAddress = (e) => {
+		const fieldsToValidate = [
+			{
+				value: addressData.street + addressData.city,
+				validator: checkName,
+			},
+			{ value: addressData.houseNumber, validator: checkNumberWithApartment },
+			{ value: addressData.zipCode, validator: checkZipCode },
+		];
+
+		const errors = fieldsToValidate.reduce((count, field) => {
+			if (!field.validator(field.value)) {
+				return count + 1;
+			}
+			return count;
+		}, 0);
+
+		onErrorCount(errors);
+	};
 
 	return (
 		<form

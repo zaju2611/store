@@ -9,12 +9,31 @@ import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { useCharacterValidation } from "../hooks/useCharacterValidation";
 
 export default function RegisterData(props) {
-	const { formData, setFormData } = props;
+	const { formData, setFormData, onErrorCount } = props;
 	const { checkCharacters } = useCharacterValidation();
 	const { checkEmail } = useEmailValidation();
 	const { checkPassword, repeatPassword, comparePasswords } =
 		usePasswordValidation();
 	const { checkPhoneNumber } = usePhoneValidation();
+
+	const validateFormRegister = (e) => {
+		const fieldsToValidate = [
+			{ value: formData.name + formData.surname, validator: checkCharacters },
+			{ value: formData.email, validator: checkEmail },
+			{ value: formData.phoneNumber, validator: checkPhoneNumber },
+			{ value: formData.password, validator: checkPassword },
+			{ value: formData.repeatPassword, validator: repeatPassword },
+		];
+
+		const errors = fieldsToValidate.reduce((count, field) => {
+			if (!field.validator(field.value)) {
+				return count + 1;
+			}
+			return count;
+		}, 0);
+
+		onErrorCount(errors);
+	};
 
 	return (
 		<form

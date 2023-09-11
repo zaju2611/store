@@ -12,6 +12,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 export default function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [errorCount, setErrorCount] = useState(0);
 
 	const dispatch = useDispatch();
 
@@ -28,7 +29,9 @@ export default function Login() {
 
 	const handleRegisterClick = (event) => {
 		dispatch(buttonClicked());
-		signIn(event);
+		if (errorCount === 0) {
+			signIn(event);
+		}
 		setTimeout(() => {
 			dispatch(resetButtonClicked());
 		}, 300);
@@ -43,6 +46,7 @@ export default function Login() {
 				password={password}
 				setPassword={setPassword}
 				handleRegisterClick={handleRegisterClick}
+				onErrorCount={setErrorCount}
 			/>
 		</div>
 	);
