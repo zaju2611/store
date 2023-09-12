@@ -30,8 +30,8 @@ export default function Register() {
 		zipCode: "",
 	});
 
-	const [validationRegisterErrors, setValidationRegisterErrors] = useState(0);
-	const [valiationAddressErrors, setValidationAddressErrors] = useState(0);
+	const [validationRegisterErrors, setValidationRegisterErrors] = useState(6);
+	const [validationAddressErrors, setValidationAddressErrors] = useState(4);
 
 	const signUp = (e) => {
 		e.preventDefault();
@@ -46,7 +46,9 @@ export default function Register() {
 
 	const handleRegisterClick = (e) => {
 		dispatch(buttonClicked());
-		if (validationRegisterErrors === 0 && valiationAddressErrors === 0) {
+		console.log(validationRegisterErrors);
+		console.log(validationAddressErrors);
+		if (validationRegisterErrors === 0 && validationAddressErrors === 0) {
 			signUp(e);
 		}
 		setTimeout(() => {

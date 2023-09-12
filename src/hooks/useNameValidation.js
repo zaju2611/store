@@ -1,6 +1,10 @@
 export function useNameValidation() {
 	const checkName = (input) => {
-		if (/^[a-zA-Z-]+(\s[a-zA-Z-]+)*$/.test(input)) {
+		if (
+			/^([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ-]+(\s[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ-]+)*)$/.test(
+				input
+			)
+		) {
 			return true;
 		}
 		return false;

@@ -13,23 +13,22 @@ export default function AddressForm(props) {
 	const { checkZipCode } = useZipCodeValidation();
 
 	const validateFormAddress = (e) => {
-		const fieldsToValidate = [
-			{
-				value: addressData.street + addressData.city,
-				validator: checkName,
-			},
-			{ value: addressData.houseNumber, validator: checkNumberWithApartment },
-			{ value: addressData.zipCode, validator: checkZipCode },
-		];
+		let err = 0;
 
-		const errors = fieldsToValidate.reduce((count, field) => {
-			if (!field.validator(field.value)) {
-				return count + 1;
-			}
-			return count;
-		}, 0);
+		if (!checkName(addressData.street)) {
+			err++;
+		}
+		if (!checkName(addressData.city)) {
+			err++;
+		}
+		if (!checkNumberWithApartment(addressData.houseNumber)) {
+			err++;
+		}
+		if (!checkZipCode(addressData.zipCode)) {
+			err++;
+		}
 
-		onErrorCount(errors);
+		onErrorCount(err);
 	};
 
 	return (
@@ -51,9 +50,10 @@ export default function AddressForm(props) {
 					errorText={"Only letters!"}
 					validator={checkName}
 					value={addressData.name}
-					onChange={(e) =>
-						setAddressData({ ...addressData, street: e.target.value })
-					}
+					onChange={(e) => {
+						setAddressData({ ...addressData, street: e.target.value });
+						validateFormAddress();
+					}}
 				/>
 				<FormInput
 					icon={<BsFillHouseFill style={{ marginRight: ".5rem" }} />}
@@ -61,9 +61,10 @@ export default function AddressForm(props) {
 					errorText={"Incorrect form!"}
 					validator={checkNumberWithApartment}
 					value={addressData.houseNumber}
-					onChange={(e) =>
-						setAddressData({ ...addressData, houseNumber: e.target.value })
-					}
+					onChange={(e) => {
+						setAddressData({ ...addressData, houseNumber: e.target.value });
+						validateFormAddress();
+					}}
 				/>
 			</div>
 			<FormInput
@@ -73,9 +74,10 @@ export default function AddressForm(props) {
 				errorText={"Only letters!"}
 				validator={checkName}
 				value={addressData.city}
-				onChange={(e) =>
-					setAddressData({ ...addressData, city: e.target.value })
-				}
+				onChange={(e) => {
+					setAddressData({ ...addressData, city: e.target.value });
+					validateFormAddress();
+				}}
 			/>
 			<FormInput
 				icon={<BiCurrentLocation style={{ marginRight: ".5rem" }} />}
@@ -84,9 +86,10 @@ export default function AddressForm(props) {
 				errorText={"Incorrect form!"}
 				validator={checkZipCode}
 				value={addressData.zipCode}
-				onChange={(e) =>
-					setAddressData({ ...addressData, zipCode: e.target.value })
-				}
+				onChange={(e) => {
+					setAddressData({ ...addressData, zipCode: e.target.value });
+					validateFormAddress();
+				}}
 			/>
 		</form>
 	);
