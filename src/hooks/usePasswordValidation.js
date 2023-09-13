@@ -16,7 +16,7 @@ export function usePasswordValidation() {
 	};
 
 	const comparePasswords = (input1, input2) => {
-		return input1 === input2;
+		return input1 !== "" && (input2 !== "") & (input1 === input2);
 	};
 
 	return { checkPassword, repeatPassword, comparePasswords };

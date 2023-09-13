@@ -19,26 +19,37 @@ export default function RegisterData(props) {
 	const validateFormRegister = (e) => {
 		let err = 0;
 
-		if (!checkCharacters(formData.name)) {
+		if (!checkCharacters(formData.name) || formData.name === "") {
 			err++;
 		}
-		if (!checkCharacters(formData.surname)) {
+		if (!checkCharacters(formData.surname) || formData.surname === "") {
 			err++;
 		}
-		if (!checkEmail(formData.email)) {
+		if (!checkEmail(formData.email) || formData.email === "") {
 			err++;
 		}
-		if (!checkPhoneNumber(formData.phoneNumber)) {
+		if (
+			!checkPhoneNumber(formData.phoneNumber) ||
+			formData.phoneNumber === ""
+		) {
 			err++;
 		}
-		if (!checkPassword(formData.password)) {
+		if (!checkPassword(formData.password) || formData.password === "") {
 			err++;
 		}
-		if (!comparePasswords(formData.password, formData.repeatPassword)) {
+		if (
+			!comparePasswords(formData.password, formData.repeatPassword) ||
+			formData.repeatPassword === ""
+		) {
 			err++;
 		}
 
 		onErrorCount(err);
+	};
+
+	const handleInputChange = (field, value) => {
+		setFormData({ ...formData, [field]: value });
+		validateFormRegister();
 	};
 
 	return (
@@ -57,10 +68,7 @@ export default function RegisterData(props) {
 					errorText="At least 3 characters!"
 					validator={checkCharacters}
 					value={formData.name}
-					onChange={(e) => {
-						setFormData({ ...formData, name: e.target.value });
-						validateFormRegister();
-					}}
+					onChange={(e) => handleInputChange("name", e.target.value)}
 				/>
 				<FormInput
 					icon={<BsPerson />}
@@ -68,10 +76,7 @@ export default function RegisterData(props) {
 					errorText="At least 3 characters!"
 					validator={checkCharacters}
 					value={formData.surname}
-					onChange={(e) => {
-						setFormData({ ...formData, surname: e.target.value });
-						validateFormRegister();
-					}}
+					onChange={(e) => handleInputChange("surname", e.target.value)}
 				/>
 			</div>
 			<FormInput
@@ -81,10 +86,7 @@ export default function RegisterData(props) {
 				errorText="Incorrect email address!"
 				validator={checkEmail}
 				value={formData.email}
-				onChange={(e) => {
-					setFormData({ ...formData, email: e.target.value });
-					validateFormRegister();
-				}}
+				onChange={(e) => handleInputChange("email", e.target.value)}
 			/>
 			<FormInput
 				icon={<BiPhone />}
@@ -92,10 +94,7 @@ export default function RegisterData(props) {
 				errorText="Incorrect phone number!"
 				validator={checkPhoneNumber}
 				value={formData.phoneNumber}
-				onChange={(e) => {
-					setFormData({ ...formData, phoneNumber: e.target.value });
-					validateFormRegister();
-				}}
+				onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
 			/>
 			<div style={{ display: "flex", width: "100%" }}>
 				<FormInput
@@ -105,10 +104,7 @@ export default function RegisterData(props) {
 					errorText="At least 8 characters and 1 number!"
 					validator={checkPassword}
 					value={formData.password}
-					onChange={(e) => {
-						setFormData({ ...formData, password: e.target.value });
-						validateFormRegister();
-					}}
+					onChange={(e) => handleInputChange("password", e.target.value)}
 				/>
 				<FormInput
 					icon={<RiLockPasswordLine />}
@@ -118,10 +114,7 @@ export default function RegisterData(props) {
 					validator={comparePasswords}
 					compareTo={repeatPassword}
 					value={formData.repeatPassword}
-					onChange={(e) => {
-						setFormData({ ...formData, repeatPassword: e.target.value });
-						validateFormRegister();
-					}}
+					onChange={(e) => handleInputChange("repeatPassword", e.target.value)}
 				/>
 			</div>
 		</form>
