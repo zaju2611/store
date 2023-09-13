@@ -1,7 +1,6 @@
 export function useNameValidation() {
 	const checkName = (input) => {
 		if (!input || input.trim() === "") {
-			console.log(false); // Wyświetla false, gdy pole jest puste
 			return false;
 		}
 
@@ -10,7 +9,6 @@ export function useNameValidation() {
 				input
 			);
 
-		console.log(isValid); // Wyświetla true lub false w zależności od wyniku walidacji
 		return isValid;
 	};
 

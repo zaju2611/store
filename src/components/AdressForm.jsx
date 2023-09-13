@@ -5,6 +5,7 @@ import FormInput from "./FormInput";
 import { useNameValidation } from "../hooks/useNameValidation";
 import { useAddressValidation } from "../hooks/useAddressValidation";
 import { useZipCodeValidation } from "../hooks/useZipCodeValidation";
+import { useEffect } from "react";
 
 export default function AddressForm(props) {
 	const { addressData, setAddressData, onErrorCount } = props;
@@ -34,10 +35,12 @@ export default function AddressForm(props) {
 		onErrorCount(err);
 	};
 
+	useEffect(() => {
+		validateFormAddress();
+	}, [addressData]);
+
 	const handleInputChange = (field, value) => {
 		setAddressData({ ...addressData, [field]: value });
-		console.log(field = value);
-		validateFormAddress();
 	};
 
 	return (

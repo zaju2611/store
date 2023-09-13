@@ -7,6 +7,7 @@ import { usePhoneValidation } from "../hooks/usePhoneValidation";
 import { useEmailValidation } from "../hooks/useEmailValidation";
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { useCharacterValidation } from "../hooks/useCharacterValidation";
+import { useEffect } from "react";
 
 export default function RegisterData(props) {
 	const { formData, setFormData, onErrorCount } = props;
@@ -47,9 +48,12 @@ export default function RegisterData(props) {
 		onErrorCount(err);
 	};
 
+	useEffect(() => {
+		validateFormRegister();
+	}, [formData]);
+
 	const handleInputChange = (field, value) => {
 		setFormData({ ...formData, [field]: value });
-		validateFormRegister();
 	};
 
 	return (
