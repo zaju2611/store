@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import { auth } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 
 export default function Register() {
 	const dispatch = useDispatch();
@@ -37,7 +38,28 @@ export default function Register() {
 		e.preventDefault();
 		createUserWithEmailAndPassword(auth, formData.email, formData.password)
 			.then((userCredential) => {
-				console.log(userCredential);
+				const db = getDatabase();
+				const userRef = ref(db, `users/${userCredential.user.uid}`);
+				const userData = {
+					name: formData.name,
+					surname: formData.surname,
+					email: formData.email,
+					phoneNumber: formData.phoneNumber,
+					street: addressData.street,
+					houseNumber: addressData.houseNumber,
+					city: addressData.city,
+					zipCode: addressData.zipCode,
+				};
+				set(userRef, userData)
+					.then(() => {
+						console.log("Dane użytkownika zostały zapisane w bazie danych.");
+					})
+					.catch((error) => {
+						console.error(
+							"Błąd podczas zapisywania danych użytkownika:",
+							error
+						);
+					});
 			})
 			.catch((error) => {
 				console.log(error);
@@ -46,8 +68,7 @@ export default function Register() {
 
 	const handleRegisterClick = (e) => {
 		dispatch(buttonClicked());
-		console.log(validationRegisterErrors);
-		console.log(validationAddressErrors);
+
 		if (validationRegisterErrors === 0 && validationAddressErrors === 0) {
 			signUp(e);
 		}
