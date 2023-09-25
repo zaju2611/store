@@ -61,7 +61,7 @@ export default function AddressForm(props) {
 					placeholder="Street"
 					errorText={"Only letters!"}
 					validator={checkName}
-					value={addressData.name}
+					value={addressData.street}
 					onChange={(e) => handleInputChange("street", e.target.value)}
 				/>
 				<FormInput

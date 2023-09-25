@@ -52,13 +52,10 @@ export default function Register() {
 				};
 				set(userRef, userData)
 					.then(() => {
-						console.log("Dane użytkownika zostały zapisane w bazie danych.");
+						console.log("User data saved in database");
 					})
 					.catch((error) => {
-						console.error(
-							"Błąd podczas zapisywania danych użytkownika:",
-							error
-						);
+						console.error("Error: ", error);
 					});
 			})
 			.catch((error) => {

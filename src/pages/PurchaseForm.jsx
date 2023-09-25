@@ -7,12 +7,34 @@ import {
 	buttonClicked,
 	resetButtonClicked,
 } from "../store/reducers/validationSlice";
+import { useState } from "react";
 
 export default function PurchaseForm() {
 	const dispatch = useDispatch();
 
+	const [formData, setFormData] = useState({
+		name: "",
+		surname: "",
+		email: "",
+		phoneNumber: "",
+	});
+
+	const [addressData, setAddressData] = useState({
+		street: "",
+		houseNumber: "",
+		city: "",
+		zipCode: "",
+	});
+
+	const [validationContactErrors, setValidationContactErrors] = useState(4);
+	const [validationAddressErrors, setValidationAddressErrors] = useState(4);
+
 	const handleSubmitClick = () => {
 		dispatch(buttonClicked());
+
+		if (validationContactErrors === 0 && validationAddressErrors === 0) {
+			console.log("brak blędów");
+		}
 
 		setTimeout(() => {
 			dispatch(resetButtonClicked());
@@ -22,8 +44,16 @@ export default function PurchaseForm() {
 	return (
 		<div className="pageContainer">
 			<Header>Purchase</Header>
-			<ConcactForm />
-			<AddressForm />
+			<ConcactForm
+				formData={formData}
+				setFormData={setFormData}
+				onErrorCount={setValidationContactErrors}
+			/>
+			<AddressForm
+				addressData={addressData}
+				setAddressData={setAddressData}
+				onErrorCount={setValidationAddressErrors}
+			/>
 			<div
 				style={{
 					display: "flex",
