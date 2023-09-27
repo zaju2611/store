@@ -21,6 +21,7 @@ import Returns from "./pages/Returns";
 import Complaint from "./pages/Complaint";
 import Terms from "./pages/Terms";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import OrderConfirmation from "./pages/OrderConfirmation";
 
 export default function App() {
 	const [categories, setCategories] = useState([]);
@@ -93,6 +94,7 @@ export default function App() {
 				<Route path="/complaint" element={<Complaint />} />
 				<Route path="/terms" element={<Terms />} />
 				<Route path="/policy" element={<PrivacyPolicy />} />
+				<Route path="/orderConfirmation" element={<OrderConfirmation />} />
 			</Routes>
 			<Footer />
 		</div>

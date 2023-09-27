@@ -8,6 +8,7 @@ import {
 	resetButtonClicked,
 } from "../store/reducers/validationSlice";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function PurchaseForm() {
 	const dispatch = useDispatch();
@@ -62,12 +63,15 @@ export default function PurchaseForm() {
 					alignItems: "center",
 					width: "80%",
 				}}>
-				<button
-					className="accountBtns"
-					style={{ width: "20%", backgroundColor: "var(--pink)" }}
-					onClick={handleSubmitClick}>
-					Next
-				</button>
+				<Link to="/orderConfirmation">
+					<button
+						className="accountBtns"
+						style={{ width: "20%", backgroundColor: "var(--pink)" }}
+						onClick={handleSubmitClick}>
+						Next
+					</button>
+				</Link>
+
 				<div>
 					<FaStarOfLife style={{ fontSize: ".5rem", color: "red" }} />
 					<span style={{ fontSize: ".8rem" }}> mandatory field</span>
