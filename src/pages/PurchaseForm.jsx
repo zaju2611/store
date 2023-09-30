@@ -2,30 +2,20 @@ import AddressForm from "../components/AdressForm";
 import ConcactForm from "../components/ConcactForm";
 import { FaStarOfLife } from "react-icons/fa";
 import Header from "../components/Header";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	buttonClicked,
 	resetButtonClicked,
 } from "../store/reducers/validationSlice";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { setFormData, setAddressData } from "../store/reducers/dataSlice";
 
 export default function PurchaseForm() {
 	const dispatch = useDispatch();
 
-	const [formData, setFormData] = useState({
-		name: "",
-		surname: "",
-		email: "",
-		phoneNumber: "",
-	});
-
-	const [addressData, setAddressData] = useState({
-		street: "",
-		houseNumber: "",
-		city: "",
-		zipCode: "",
-	});
+	const formData = useSelector((state) => state.data.formData);
+	const addressData = useSelector((state) => state.data.addressData);
 
 	const [validationContactErrors, setValidationContactErrors] = useState(4);
 	const [validationAddressErrors, setValidationAddressErrors] = useState(4);
@@ -34,7 +24,7 @@ export default function PurchaseForm() {
 		dispatch(buttonClicked());
 
 		if (validationContactErrors === 0 && validationAddressErrors === 0) {
-			console.log("brak blędów");
+			console.log("no errors");
 		}
 
 		setTimeout(() => {
@@ -47,12 +37,12 @@ export default function PurchaseForm() {
 			<Header>Purchase</Header>
 			<ConcactForm
 				formData={formData}
-				setFormData={setFormData}
+				setFormData={(data) => dispatch(setFormData(data))}
 				onErrorCount={setValidationContactErrors}
 			/>
 			<AddressForm
 				addressData={addressData}
-				setAddressData={setAddressData}
+				setAddressData={(data) => dispatch(setAddressData(data))}
 				onErrorCount={setValidationAddressErrors}
 			/>
 			<div

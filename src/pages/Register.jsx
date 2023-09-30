@@ -2,7 +2,7 @@ import AddressForm from "../components/AdressForm";
 import { FaStarOfLife } from "react-icons/fa";
 import RegisterData from "../components/RegisterData";
 import Header from "../components/Header";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	buttonClicked,
 	resetButtonClicked,
@@ -11,25 +11,13 @@ import { useState } from "react";
 import { auth } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
+import { setFormData, setAddressData } from "../store/reducers/dataSlice";
 
 export default function Register() {
 	const dispatch = useDispatch();
 
-	const [formData, setFormData] = useState({
-		name: "",
-		surname: "",
-		email: "",
-		phoneNumber: "",
-		password: "",
-		repeatPassword: "",
-	});
-
-	const [addressData, setAddressData] = useState({
-		street: "",
-		houseNumber: "",
-		city: "",
-		zipCode: "",
-	});
+	const formData = useSelector((state) => state.data.formData);
+	const addressData = useSelector((state) => state.data.addressData);
 
 	const [validationRegisterErrors, setValidationRegisterErrors] = useState(6);
 	const [validationAddressErrors, setValidationAddressErrors] = useState(4);
@@ -79,12 +67,12 @@ export default function Register() {
 			<Header>Register</Header>
 			<RegisterData
 				formData={formData}
-				setFormData={setFormData}
+				setFormData={(data) => dispatch(setFormData(data))}
 				onErrorCount={setValidationRegisterErrors}
 			/>
 			<AddressForm
 				addressData={addressData}
-				setAddressData={setAddressData}
+				setAddressData={(data) => dispatch(setAddressData(data))}
 				onErrorCount={setValidationAddressErrors}
 			/>
 			<div

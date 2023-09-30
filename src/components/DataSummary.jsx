@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
+
 export default function DataSummary() {
+	const formData = useSelector((state) => state.data.formData);
+	const addressData = useSelector((state) => state.data.addressData);
+
 	return (
 		<div
 			style={{
@@ -19,14 +24,18 @@ export default function DataSummary() {
 				Your data
 			</h3>
 			<div>
-				<p>Name: Jakub Zając</p>
-				<p>Email: jakub.zajac2611@gmail.com</p>
-				<p>Phone number: 721279034</p>
+				<p>
+					Name: {formData.name} {formData.surname}
+				</p>
+				<p>Email: {formData.email}</p>
+				<p>Phone number: {formData.phoneNumber}</p>
 			</div>
 			<div>
-				<p>Adress: Godowska 88h</p>
-				<p>City: Radom</p>
-				<p>Zip Code: 26-600</p>
+				<p>
+					Adress: {addressData.street} {addressData.houseNumber}
+				</p>
+				<p>City: {addressData.city}</p>
+				<p>Zip Code: {addressData.zipCode}</p>
 			</div>
 		</div>
 	);

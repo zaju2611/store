@@ -6,6 +6,8 @@ const initialState = {
 		surname: "",
 		email: "",
 		phoneNumber: "",
+		password: "",
+		repeatPassword: "",
 	},
 	addressData: {
 		street: "",
