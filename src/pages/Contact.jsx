@@ -3,8 +3,55 @@ import { MdOutlineEmail } from "react-icons/md";
 import { BiPhone } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 import Header from "../components/Header";
+import { useEmailValidation } from "../hooks/useEmailValidation";
+import { usePhoneValidation } from "../hooks/usePhoneValidation";
+import { useCharacterValidation } from "../hooks/useCharacterValidation";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Contact() {
+	const { checkEmail } = useEmailValidation();
+	const { checkPhoneNumber } = usePhoneValidation();
+	const { checkCharacters } = useCharacterValidation();
+
+	const [formData, setFormData] = useState({
+		name: "",
+		phoneNumber: "",
+		email: "",
+	});
+
+	const [err, setErr] = useState(3);
+
+	const handleInputChange = (field, value) => {
+		setFormData({ ...formData, [field]: value });
+	};
+
+	const validateFormField = (e) => {
+		let error = 0;
+
+		if (!checkCharacters(value) || value === "") {
+			error++;
+		}
+		if (!checkPhoneNumber(value) || value === "") {
+			error++;
+		}
+		if (!checkEmail(value) || value === "") {
+			error++;
+		}
+			
+		}
+
+		setErr(error);
+	};
+
+	useEffect(()=> {
+		validateFormField();
+	},[formData]);
+
+	const handleSubmit = () => {
+		if (err === 0) console.log("wysłano");
+	};
+
 	return (
 		<div className="pageContainer">
 			<Header>Contact</Header>
@@ -19,12 +66,16 @@ export default function Contact() {
 					<FormInput
 						icon={<BsFillPersonFill />}
 						placeholder="Name"
-						errorText="This field is required!"
+						errorText={validationErrors.name}
+						value={formData.name}
+						onChange={(e) => handleInputChange("name", e.target.value)}
 					/>
 					<FormInput
 						icon={<BiPhone />}
 						placeholder="Phone number"
-						errorText="This field is required!"
+						errorText={validationErrors.phoneNumber}
+						value={formData.phoneNumber}
+						onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
 					/>
 				</div>
 				<div style={{ width: "60%", maxWidth: "400px" }}>
@@ -32,7 +83,9 @@ export default function Contact() {
 						icon={<MdOutlineEmail />}
 						placeholder="Email"
 						type="email"
-						errorText="Incorrect email address!"
+						errorText={validationErrors.email}
+						value={formData.email}
+						onChange={(e) => handleInputChange("email", e.target.value)}
 					/>
 				</div>
 				<h4 style={{ marginTop: "20px" }}> Your question</h4>
@@ -60,7 +113,8 @@ export default function Contact() {
 							backgroundColor: "var(--pink)",
 							padding: "10px",
 							marginTop: "20px",
-						}}>
+						}}
+						onClick={handleSubmit}>
 						Send
 					</button>
 				</div>
