@@ -13,7 +13,6 @@ export default function FormInput({
 	validator = null,
 	compareTo = null,
 	onChange,
-	
 }) {
 	const [value, setValue] = useState("");
 	const [isValid, setIsValid] = useState(true);

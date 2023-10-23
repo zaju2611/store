@@ -22,34 +22,34 @@ export default function Contact() {
 
 	const [err, setErr] = useState(3);
 
-	const handleInputChange = (field, value) => {
-		setFormData({ ...formData, [field]: value });
-	};
-
 	const validateFormField = (e) => {
 		let error = 0;
 
-		if (!checkCharacters(value) || value === "") {
+		if (!checkCharacters(formData.name) || formData.name === "") {
 			error++;
 		}
-		if (!checkPhoneNumber(value) || value === "") {
+		if (
+			!checkPhoneNumber(formData.phoneNumber) ||
+			formData.phoneNumber === ""
+		) {
 			error++;
 		}
-		if (!checkEmail(value) || value === "") {
+		if (!checkEmail(formData.email) || formData.email === "") {
 			error++;
-		}
-			
 		}
 
 		setErr(error);
 	};
 
-	useEffect(()=> {
+	useEffect(() => {
 		validateFormField();
-	},[formData]);
+	}, [formData]);
 
 	const handleSubmit = () => {
 		if (err === 0) console.log("wysłano");
+	};
+	const handleInputChange = (field, value) => {
+		setFormData({ ...formData, [field]: value });
 	};
 
 	return (
@@ -66,14 +66,16 @@ export default function Contact() {
 					<FormInput
 						icon={<BsFillPersonFill />}
 						placeholder="Name"
-						errorText={validationErrors.name}
+						errorText="At least 3 characters"
+						validator={checkCharacters}
 						value={formData.name}
 						onChange={(e) => handleInputChange("name", e.target.value)}
 					/>
 					<FormInput
 						icon={<BiPhone />}
 						placeholder="Phone number"
-						errorText={validationErrors.phoneNumber}
+						errorText="At least 3 characters"
+						validator={checkPhoneNumber}
 						value={formData.phoneNumber}
 						onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
 					/>
@@ -82,8 +84,8 @@ export default function Contact() {
 					<FormInput
 						icon={<MdOutlineEmail />}
 						placeholder="Email"
-						type="email"
-						errorText={validationErrors.email}
+						errorText="At least 3 characters"
+						validator={checkEmail}
 						value={formData.email}
 						onChange={(e) => handleInputChange("email", e.target.value)}
 					/>
