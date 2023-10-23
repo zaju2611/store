@@ -6,8 +6,7 @@ import Header from "../components/Header";
 import { useEmailValidation } from "../hooks/useEmailValidation";
 import { usePhoneValidation } from "../hooks/usePhoneValidation";
 import { useCharacterValidation } from "../hooks/useCharacterValidation";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Contact() {
 	const { checkEmail } = useEmailValidation();
@@ -46,7 +45,9 @@ export default function Contact() {
 	}, [formData]);
 
 	const handleSubmit = () => {
-		if (err === 0) console.log("wysłano");
+		if (err === 0) {
+			console.log("wysłano");
+		} else console.log("chuj");
 	};
 	const handleInputChange = (field, value) => {
 		setFormData({ ...formData, [field]: value });
@@ -74,7 +75,7 @@ export default function Contact() {
 					<FormInput
 						icon={<BiPhone />}
 						placeholder="Phone number"
-						errorText="At least 3 characters"
+						errorText="Incorrect phone number!"
 						validator={checkPhoneNumber}
 						value={formData.phoneNumber}
 						onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
@@ -84,7 +85,7 @@ export default function Contact() {
 					<FormInput
 						icon={<MdOutlineEmail />}
 						placeholder="Email"
-						errorText="At least 3 characters"
+						errorText="Incorrect email address!"
 						validator={checkEmail}
 						value={formData.email}
 						onChange={(e) => handleInputChange("email", e.target.value)}
