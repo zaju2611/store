@@ -6,11 +6,61 @@ import FormInput from "./FormInput";
 import { usePhoneValidation } from "../hooks/usePhoneValidation";
 import { useEmailValidation } from "../hooks/useEmailValidation";
 import { useCharacterValidation } from "../hooks/useCharacterValidation";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+	buttonClicked,
+	resetButtonClicked,
+} from "../store/reducers/validationSlice";
 
 export default function ContactProduct({ product, onClose, onClick }) {
+	const dispatch = useDispatch();
 	const { checkCharacters } = useCharacterValidation();
 	const { checkEmail } = useEmailValidation();
 	const { checkPhoneNumber } = usePhoneValidation();
+
+	const [formData, setFormData] = useState({
+		name: "",
+		phoneNumber: "",
+		email: "",
+	});
+	const [err, setErr] = useState(3);
+
+	const handleInputChange = (field, value) => {
+		setFormData({ ...formData, [field]: value });
+	};
+
+	const validateFormField = () => {
+		let error = 0;
+		if (!checkCharacters(formData.name) || formData.name === "") {
+			error++;
+		}
+		if (
+			!checkPhoneNumber(formData.phoneNumber) ||
+			formData.phoneNumber === ""
+		) {
+			error++;
+		}
+		if (!checkEmail(formData.email) || formData.email === "") {
+			error++;
+		}
+		setErr(error);
+	};
+
+	useEffect(() => {
+		validateFormField();
+	}, [formData]);
+
+	const handleSubmit = () => {
+		dispatch(buttonClicked());
+		if (err === 0) {
+			console.log("wyslano");
+			onClick();
+		}
+		setTimeout(() => {
+			dispatch(resetButtonClicked());
+		}, 300);
+	};
 
 	return (
 		<div className="contactProductContainer">
@@ -41,22 +91,27 @@ export default function ContactProduct({ product, onClose, onClick }) {
 				<FormInput
 					icon={<BsFillPersonFill />}
 					placeholder="Name"
-					errorText="At least 3 characters!"
+					errorText="At least 3 characters"
 					validator={checkCharacters}
+					value={formData.name}
+					onChange={(e) => handleInputChange("name", e.target.value)}
 				/>
 				<FormInput
 					icon={<BiPhone />}
 					placeholder="Phone number"
 					errorText="Incorrect phone number!"
 					validator={checkPhoneNumber}
+					value={formData.phoneNumber}
+					onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
 				/>
 			</div>
 			<FormInput
 				icon={<MdOutlineEmail />}
 				placeholder="Email"
-				type="email"
 				errorText="Incorrect email address!"
 				validator={checkEmail}
+				value={formData.email}
+				onChange={(e) => handleInputChange("email", e.target.value)}
 			/>
 			<p style={{ margin: "15px" }}>Question: </p>
 			<textarea
@@ -77,7 +132,7 @@ export default function ContactProduct({ product, onClose, onClick }) {
 						marginTop: "10px",
 						alignSelf: "flex-end",
 					}}
-					onClick={() => onClick()}>
+					onClick={handleSubmit}>
 					Send
 				</button>
 			</div>
