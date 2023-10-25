@@ -7,19 +7,39 @@ import { useEmailValidation } from "../hooks/useEmailValidation";
 import { usePhoneValidation } from "../hooks/usePhoneValidation";
 import { useCharacterValidation } from "../hooks/useCharacterValidation";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+	buttonClicked,
+	resetButtonClicked,
+} from "../store/reducers/validationSlice";
+import SuccessComponent from "../components/SuccessComponent";
 
 export default function Contact() {
+	const dispatch = useDispatch();
 	const { checkEmail } = useEmailValidation();
 	const { checkPhoneNumber } = usePhoneValidation();
 	const { checkCharacters } = useCharacterValidation();
-
+	const [showSuccessComponent, setShowSuccessComponent] = useState(false);
+	const [successMessage, setSuccessMessage] = useState("");
+	const [err, setErr] = useState(3);
 	const [formData, setFormData] = useState({
 		name: "",
 		phoneNumber: "",
 		email: "",
 	});
 
-	const [err, setErr] = useState(3);
+	const handleCloseSuccessComponent = () => {
+		setShowSuccessComponent(false);
+	};
+
+	const handleShowSuccess = () => {
+		setSuccessMessage("Sent successfully");
+		setShowSuccessComponent(true);
+		setFormData({ name: "", phoneNumber: "", email: "" });
+		setTimeout(() => {
+			handleCloseSuccessComponent();
+		}, 5000);
+	};
 
 	const validateFormField = (e) => {
 		let error = 0;
@@ -45,10 +65,16 @@ export default function Contact() {
 	}, [formData]);
 
 	const handleSubmit = () => {
+		dispatch(buttonClicked());
 		if (err === 0) {
 			console.log("wysłano");
-		} else console.log("chuj");
+			handleShowSuccess();
+		} else console.log(err);
+		setTimeout(() => {
+			dispatch(resetButtonClicked());
+		}, 300);
 	};
+
 	const handleInputChange = (field, value) => {
 		setFormData({ ...formData, [field]: value });
 	};
@@ -168,6 +194,11 @@ export default function Contact() {
 					</div>
 				</div>
 			</div>
+			{showSuccessComponent && (
+				<SuccessComponent onClose={() => handleCloseSuccessComponent()}>
+					{successMessage}
+				</SuccessComponent>
+			)}
 		</div>
 	);
 }
