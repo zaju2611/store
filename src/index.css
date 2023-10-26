@@ -1053,6 +1053,11 @@ ol > li:before {
 	z-index: 1000;
 }
 
+.accBtns {
+	width: 75px;
+	padding: 5px;
+}
+
 @keyframes rotateImages {
 	0% {
 		opacity: 0;
