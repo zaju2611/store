@@ -30,8 +30,8 @@ export default function Account() {
 					margin: "1rem",
 				}}>
 				<h2 style={{ textAlign: "center", margin: ".5rem" }}>Your data</h2>
-				<p>
-					Your name:{" "}
+				<div className="dataContainer">
+					<p className="dataText">Your name: </p>
 					<EditableField
 						isEditing={isEditing}
 						value={editedFormData.name}
@@ -39,21 +39,19 @@ export default function Account() {
 							setEditedFormData({ ...editedFormData, name: e.target.value })
 						}
 					/>
-					{isEditing && (
-						<EditableField
-							isEditing={isEditing}
-							value={editedFormData.surname}
-							onChange={(e) =>
-								setEditedFormData({
-									...editedFormData,
-									surname: e.target.value,
-								})
-							}
-						/>
-					)}
-				</p>
-				<p>
-					Your email:{" "}
+					<EditableField
+						isEditing={isEditing}
+						value={editedFormData.surname}
+						onChange={(e) =>
+							setEditedFormData({
+								...editedFormData,
+								surname: e.target.value,
+							})
+						}
+					/>
+				</div>
+				<div className="dataContainer">
+					<p className="dataText">Your email: </p>
 					<EditableField
 						isEditing={isEditing}
 						value={editedFormData.email}
@@ -61,9 +59,9 @@ export default function Account() {
 							setEditedFormData({ ...editedFormData, email: e.target.value })
 						}
 					/>
-				</p>
-				<p>
-					Phone number:{" "}
+				</div>
+				<div className="dataContainer">
+					<p className="dataText">Phone number: </p>
 					<EditableField
 						isEditing={isEditing}
 						value={editedFormData.phoneNumber}
@@ -74,9 +72,9 @@ export default function Account() {
 							})
 						}
 					/>
-				</p>
-				<p>
-					Address:{" "}
+				</div>
+				<div className="dataContainer">
+					<p className="dataText">Address: </p>
 					<EditableField
 						isEditing={isEditing}
 						value={editedAddressData.street}
@@ -97,9 +95,9 @@ export default function Account() {
 							})
 						}
 					/>
-				</p>
-				<p>
-					Zip code:{" "}
+				</div>
+				<div className="dataContainer">
+					<p className="dataText">Zip code: </p>
 					<EditableField
 						isEditing={isEditing}
 						value={editedAddressData.zipCode}
@@ -110,9 +108,9 @@ export default function Account() {
 							})
 						}
 					/>
-				</p>
-				<p>
-					City:{" "}
+				</div>
+				<div className="dataContainer">
+					<p className="dataText">City: </p>
 					<EditableField
 						isEditing={isEditing}
 						value={editedAddressData.city}
@@ -123,7 +121,7 @@ export default function Account() {
 							})
 						}
 					/>
-				</p>
+				</div>
 				<div
 					style={{
 						width: "100%",

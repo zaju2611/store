@@ -1057,7 +1057,21 @@ ol > li:before {
 	width: 75px;
 	padding: 5px;
 }
+.dataContainer {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
 
+.dataText {
+	margin: 5px;
+	font-size: 0.9rem;
+}
+
+.dataLabel {
+	margin: 0.5rem;
+}
 @keyframes rotateImages {
 	0% {
 		opacity: 0;
