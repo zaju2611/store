@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setFormData, setAddressData } from "../store/reducers/dataSlice";
 import { useState } from "react";
 import EditableField from "../components/EditableField";
+import OrderItem from "../components/OrderItem";
 
 export default function Account() {
 	const formData = useSelector((state) => state.data.formData);
@@ -19,6 +20,27 @@ export default function Account() {
 		dispatch(setAddressData(editedAddressData));
 		setIsEditing(false);
 	};
+
+	const orders = [
+		{
+			orderNumber: "12345",
+			date: "2023-10-28",
+			price: 100,
+			products: [
+				{ name: "Product A", quantity: 2, unitPrice: 25 },
+				{ name: "Product B", quantity: 3, unitPrice: 15 },
+			],
+		},
+		{
+			orderNumber: "67890",
+			date: "2023-10-29",
+			price: 150,
+			products: [
+				{ name: "Product C", quantity: 4, unitPrice: 30 },
+				{ name: "Product D", quantity: 1, unitPrice: 50 },
+			],
+		},
+	];
 
 	return (
 		<div className="pageContainer">
@@ -148,6 +170,7 @@ export default function Account() {
 					)}
 				</div>
 			</div>
+			<OrderItem orders={orders} />
 		</div>
 	);
 }
