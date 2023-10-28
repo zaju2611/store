@@ -3,6 +3,7 @@ import { setFormData, setAddressData } from "../store/reducers/dataSlice";
 import { useState } from "react";
 import EditableField from "../components/EditableField";
 import OrderItem from "../components/OrderItem";
+import blouse from "../assets/images/bluzka.jpg";
 
 export default function Account() {
 	const formData = useSelector((state) => state.data.formData);
@@ -27,8 +28,18 @@ export default function Account() {
 			date: "2023-10-28",
 			price: 100,
 			products: [
-				{ name: "Product A", quantity: 2, unitPrice: 25 },
-				{ name: "Product B", quantity: 3, unitPrice: 15 },
+				{
+					name: "Product A",
+					quantity: 2,
+					unitPrice: 25,
+					image: blouse,
+				},
+				{
+					name: "Product B",
+					quantity: 3,
+					unitPrice: 15,
+					image: blouse,
+				},
 			],
 		},
 		{
@@ -36,8 +47,18 @@ export default function Account() {
 			date: "2023-10-29",
 			price: 150,
 			products: [
-				{ name: "Product C", quantity: 4, unitPrice: 30 },
-				{ name: "Product D", quantity: 1, unitPrice: 50 },
+				{
+					name: "Product C",
+					quantity: 4,
+					unitPrice: 30,
+					image: blouse,
+				},
+				{
+					name: "Product D",
+					quantity: 1,
+					unitPrice: 50,
+					image: blouse,
+				},
 			],
 		},
 	];
@@ -170,7 +191,15 @@ export default function Account() {
 					)}
 				</div>
 			</div>
-			<OrderItem orders={orders} />
+			<div
+				style={{
+					padding: "1rem",
+					border: "1px solid var(--light-grey)",
+					minWidth: "70%",
+					margin: "1rem",
+				}}>
+				<OrderItem orders={orders} />
+			</div>
 		</div>
 	);
 }
