@@ -27,7 +27,10 @@ export default function Register() {
 		createUserWithEmailAndPassword(auth, formData.email, formData.password)
 			.then((userCredential) => {
 				const db = getDatabase();
-				const userRef = ref(db, `users/${userCredential.user.uid}`);
+				const userRef = ref(
+					db,
+					`users/${userCredential.user.email.replace(".", "_")}`
+				);
 				const userData = {
 					name: formData.name,
 					surname: formData.surname,

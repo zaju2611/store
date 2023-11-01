@@ -42,7 +42,7 @@ export default function OrderItem({ orders }) {
 					...theme,
 					colors: {
 						...theme.colors,
-						primary25: "pink",
+						primary25: "var(--light-grey)",
 						primary: "var(--pink)",
 					},
 				})}

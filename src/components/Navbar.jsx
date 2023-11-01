@@ -15,10 +15,11 @@ import {
 	closeAll,
 } from "../store/reducers/navigationSlice";
 import { selectProducts } from "../store/selectors/productsSelectors";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCloseAll } from "../hooks/useCloseAll";
 
 export default function NavBar({ categories, onSearch }) {
+	const [userName, setUserName] = useState(null);
 	const state = useSelector((state) => state.navigation);
 	const products = useSelector(selectProducts);
 	const dispatch = useDispatch();
@@ -38,6 +39,14 @@ export default function NavBar({ categories, onSearch }) {
 	const handleAccountPanel = () => {
 		dispatch(toggleAccountPanel());
 	};
+
+	useEffect(() => {
+		const userData = JSON.parse(sessionStorage.getItem("user"));
+
+		if (userData) {
+			setUserName(userData.name);
+		}
+	}, []);
 
 	useEffect(() => {
 		const handleOutsideClick = (event) => {
@@ -78,9 +87,15 @@ export default function NavBar({ categories, onSearch }) {
 					<img className="logoImg" src={logo} alt="logo" />
 				</Link>
 				<div className="menu-left-section">
-					<div className="container">
-						<GoPerson className="icon" onClick={handleAccountPanel} />
-					</div>
+					{userName ? (
+						<div className="container">
+							<p>Hi {userName}</p>
+						</div>
+					) : (
+						<div className="container">
+							<GoPerson className="icon" onClick={handleAccountPanel} />
+						</div>
+					)}
 
 					<div className="container shopping-cart">
 						<BiShoppingBag className="icon" onClick={handleShoppingCartClick} />

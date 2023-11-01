@@ -8,7 +8,7 @@ import {
 } from "../store/reducers/validationSlice";
 import { auth } from "../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { ref, getDatabase, get } from "firebase/database";
+import { ref, getDatabase, get, child } from "firebase/database";
 import { setFormData, setAddressData } from "../store/reducers/dataSlice";
 
 export default function Login() {
@@ -23,7 +23,7 @@ export default function Login() {
 		signInWithEmailAndPassword(auth, email, password)
 			.then(async (userCredential) => {
 				const db = ref(getDatabase());
-				const userRef = ref(db, `users/${userCredential.user.uid}`);
+				const userRef = child(db, `users/${email.replace(".", "_")}`);
 
 				try {
 					const snapshot = await get(userRef);
@@ -41,6 +41,13 @@ export default function Login() {
 						} = userDataFromDatabase;
 						dispatch(setFormData({ name, surname, email, phoneNumber }));
 						dispatch(setAddressData({ street, houseNumber, city, zipCode }));
+
+						if (name) {
+							const userData = {
+								name: name,
+							};
+							sessionStorage.setItem("user", JSON.stringify(userData));
+						}
 					}
 				} catch (error) {
 					console.error("Error fetching user data from Firebase: ", error);
