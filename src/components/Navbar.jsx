@@ -19,6 +19,8 @@ import { selectProducts } from "../store/selectors/productsSelectors";
 import { useEffect, useState } from "react";
 import { useCloseAll } from "../hooks/useCloseAll";
 import { setLogData } from "../store/reducers/loginSlice";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
 export default function NavBar({ categories, onSearch }) {
 	const [userName, setUserName] = useState(null);
@@ -44,9 +46,16 @@ export default function NavBar({ categories, onSearch }) {
 	};
 
 	const handleLogout = () => {
-		sessionStorage.removeItem("user");
-		setUserName(null);
-		dispatch(setLogData(false));
+		signOut(auth)
+			.then(() => {
+				sessionStorage.removeItem("user");
+				setUserName(null);
+				dispatch(setLogData(false));
+				console.log("Logout successfull.");
+			})
+			.catch((error) => {
+				console.error("Logout error: ", error);
+			});
 	};
 
 	useEffect(() => {
