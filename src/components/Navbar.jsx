@@ -1,4 +1,5 @@
 import { GoThreeBars, GoSearch, GoPerson } from "react-icons/go";
+import { AiOutlineLogout } from "react-icons/ai";
 import { BiShoppingBag } from "react-icons/bi";
 import logo from "../assets/images/logo.png";
 import SearchBar from "./SearchBar";
@@ -17,9 +18,11 @@ import {
 import { selectProducts } from "../store/selectors/productsSelectors";
 import { useEffect, useState } from "react";
 import { useCloseAll } from "../hooks/useCloseAll";
+import { setLogData } from "../store/reducers/loginSlice";
 
 export default function NavBar({ categories, onSearch }) {
 	const [userName, setUserName] = useState(null);
+	const isUserLoggedIn = useSelector((state) => state.login);
 	const state = useSelector((state) => state.navigation);
 	const products = useSelector(selectProducts);
 	const dispatch = useDispatch();
@@ -40,13 +43,20 @@ export default function NavBar({ categories, onSearch }) {
 		dispatch(toggleAccountPanel());
 	};
 
+	const handleLogout = () => {
+		sessionStorage.removeItem("user");
+		setUserName(null);
+		dispatch(setLogData(false));
+	};
+
 	useEffect(() => {
 		const userData = JSON.parse(sessionStorage.getItem("user"));
-
 		if (userData) {
 			setUserName(userData.name);
+		} else {
+			setUserName(null);
 		}
-	}, []);
+	}, [isUserLoggedIn]);
 
 	useEffect(() => {
 		const handleOutsideClick = (event) => {
@@ -89,7 +99,9 @@ export default function NavBar({ categories, onSearch }) {
 				<div className="menu-left-section">
 					{userName ? (
 						<div className="container">
-							<p>Hi {userName}</p>
+							<Link to="/account" className="userGreeting">
+								Hi {userName} !
+							</Link>
 						</div>
 					) : (
 						<div className="container">
@@ -101,6 +113,13 @@ export default function NavBar({ categories, onSearch }) {
 						<BiShoppingBag className="icon" onClick={handleShoppingCartClick} />
 						<div className="shopping-cart-counter">{products}</div>
 					</div>
+					{userName ? (
+						<div className="container">
+							<AiOutlineLogout className="icon" onClick={handleLogout} />
+						</div>
+					) : (
+						""
+					)}
 				</div>
 			</div>
 			<div className="hr"></div>

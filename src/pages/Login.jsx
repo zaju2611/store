@@ -10,6 +10,7 @@ import { auth } from "../firebase/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { ref, getDatabase, get, child } from "firebase/database";
 import { setFormData, setAddressData } from "../store/reducers/dataSlice";
+import { setLogData } from "../store/reducers/loginSlice";
 
 export default function Login() {
 	const [email, setEmail] = useState("");
@@ -47,14 +48,17 @@ export default function Login() {
 								name: name,
 							};
 							sessionStorage.setItem("user", JSON.stringify(userData));
+							dispatch(setLogData(true));
 						}
 					}
 				} catch (error) {
 					console.error("Error fetching user data from Firebase: ", error);
+					dispatch(setLogData(false));
 				}
 			})
 			.catch((error) => {
 				console.log(error);
+				dispatch(setLogData(false));
 			});
 	};
 

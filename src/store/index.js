@@ -147,6 +147,7 @@ import productsReducer from "../store/reducers/productsSlice";
 import navigationReducer from "../store/reducers/navigationSlice";
 import validationReducer from "../store/reducers/validationSlice";
 import dataReducer from "../store/reducers/dataSlice";
+import loginReducer from "../store/reducers/loginSlice";
 
 const store = configureStore({
 	reducer: {
@@ -154,6 +155,7 @@ const store = configureStore({
 		navigation: navigationReducer,
 		validation: validationReducer,
 		data: dataReducer,
+		login: loginReducer,
 	},
 });
 

@@ -1072,6 +1072,20 @@ ol > li:before {
 .dataLabel {
 	margin: 0.5rem;
 }
+
+.userGreeting {
+	text-decoration: none;
+	cursor: pointer;
+	font-weight: bold;
+	color: var(--grey);
+	transition: color 0.3s;
+	margin: 5px;
+}
+
+.userGreeting:hover {
+	color: var(--pink);
+}
+
 @keyframes rotateImages {
 	0% {
 		opacity: 0;
