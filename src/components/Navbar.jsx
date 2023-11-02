@@ -4,7 +4,7 @@ import { BiShoppingBag } from "react-icons/bi";
 import logo from "../assets/images/logo.png";
 import SearchBar from "./SearchBar";
 import NavList from "./NavList";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ShoppingCart from "./ShoppingCart";
 import { useSelector, useDispatch } from "react-redux";
 import AccountPanel from "./AccountPanel";
@@ -29,6 +29,7 @@ export default function NavBar({ categories, onSearch }) {
 	const products = useSelector(selectProducts);
 	const dispatch = useDispatch();
 	const { handleClose } = useCloseAll();
+	const navigate = useNavigate();
 
 	const handleSearchClick = () => {
 		dispatch(toggleSearchBar());
@@ -51,6 +52,7 @@ export default function NavBar({ categories, onSearch }) {
 				sessionStorage.removeItem("user");
 				setUserName(null);
 				dispatch(setLogData(false));
+				navigate("/");
 				console.log("Logout successfull.");
 			})
 			.catch((error) => {

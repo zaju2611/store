@@ -8,19 +8,21 @@ import {
 	resetButtonClicked,
 } from "../store/reducers/validationSlice";
 import { auth } from "../firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorCount, setErrorCount] = useState(0);
-
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	const handleLoginClick = (event) => {
+	const handleLoginClick = async (event) => {
 		event.preventDefault();
 		dispatch(buttonClicked());
 		if (errorCount === 0) {
-			signIn(auth, email, password, dispatch);
+			await signIn(auth, email, password, dispatch);
+			navigate("/orderConfirmation");
 		}
 		setTimeout(() => {
 			dispatch(resetButtonClicked());

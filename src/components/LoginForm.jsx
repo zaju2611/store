@@ -28,7 +28,7 @@ export default function LoginForm(props) {
 		}
 
 		onErrorCount(errors);
-
+	
 		handleLoginClick(e);
 	};
 
