@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function OrderSummary({
 	value,
@@ -10,6 +11,7 @@ export default function OrderSummary({
 	const [appliedPromoMessage, setAppliedPromoMessage] = useState("");
 	const [invalidPromoMessage, setInvalidPromoMessage] = useState("");
 	const [isApplied, setIsApplied] = useState(false);
+	const isUserLoggedIn = useSelector((state) => state.login.login);
 
 	let deliveryCost =
 		selectedDelivery === "inpost" ? 15 : selectedDelivery === "dpd" ? 17 : 0;
@@ -69,6 +71,8 @@ export default function OrderSummary({
 
 		setTotalAmount(totalAmountWithPromo);
 	}, [value, totalDeliveryCost]);
+
+	const linkTo = isUserLoggedIn ? "/orderConfirmation" : "/checkout";
 
 	return (
 		<div style={{ margin: "20px", width: "50%" }}>
@@ -154,7 +158,7 @@ export default function OrderSummary({
 			)}
 
 			<Link
-				to="/checkout"
+				to={linkTo}
 				style={{
 					width: "100%",
 					display: "flex",
