@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { setFormData, setAddressData } from "../store/reducers/dataSlice";
-import { setLogData } from "../store/reducers/loginSlice";
+import { setFormData, setAddressData } from "./store/reducers/dataSlice";
+import { setLogData } from "./store/reducers/loginSlice";
 
 const signIn = async (auth, email, password, dispatch) => {
 	signInWithEmailAndPassword(auth, email, password)

@@ -8,7 +8,7 @@ import {
 } from "../store/reducers/validationSlice";
 import { auth } from "../firebase/firebase";
 
-import signIn from "../store/authFunction";
+import signIn from "../authFunction";
 
 export default function Login() {
 	const [email, setEmail] = useState("");

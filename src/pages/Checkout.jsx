@@ -1,7 +1,7 @@
 import AccountButtons from "../components/AccountButtons";
 import LoginForm from "../components/LoginForm";
 import { useState } from "react";
-import signIn from "../store/authFunction";
+import signIn from "../authFunction";
 import { useDispatch } from "react-redux";
 import {
 	buttonClicked,
