@@ -11,7 +11,7 @@ export default function LoginForm(props) {
 		setEmail,
 		password,
 		setPassword,
-		handleRegisterClick,
+		handleLoginClick,
 		onErrorCount,
 	} = props;
 	const { checkEmail } = useEmailValidation();
@@ -29,7 +29,7 @@ export default function LoginForm(props) {
 
 		onErrorCount(errors);
 
-		handleRegisterClick(e);
+		handleLoginClick(e);
 	};
 
 	return (

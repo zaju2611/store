@@ -5,7 +5,9 @@ import { BiShoppingBag } from "react-icons/bi";
 import { MdFavoriteBorder } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useCloseAll } from "../hooks/useCloseAll";
+import { useSelector } from "react-redux";
 export default function NavList({ categories, handleNavClick }) {
+	const isUserLoggedIn = useSelector((state) => state.login.login);
 	const { handleClose } = useCloseAll();
 	const renderedCategories = categories.map((category, index) => {
 		if (index === 0) {
@@ -25,11 +27,13 @@ export default function NavList({ categories, handleNavClick }) {
 		}
 	});
 
+	const linkTo = isUserLoggedIn ? "/account" : "/login";
+
 	return (
 		<div className="navContainer">
 			<div className="navList">{renderedCategories}</div>
 			<div className="navIcons">
-				<Link to="/account" onClick={handleClose}>
+				<Link to={linkTo} onClick={handleClose}>
 					<GoPerson />
 				</Link>
 
