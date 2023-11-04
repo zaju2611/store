@@ -1,3 +1,100 @@
+// import { BsFillHouseFill } from "react-icons/bs";
+// import { FaCity } from "react-icons/fa";
+// import { BiStreetView, BiCurrentLocation } from "react-icons/bi";
+// import FormInput from "./FormInput";
+// import { useNameValidation } from "../hooks/useNameValidation";
+// import { useAddressValidation } from "../hooks/useAddressValidation";
+// import { useZipCodeValidation } from "../hooks/useZipCodeValidation";
+// import { useEffect } from "react";
+
+// export default function AddressForm(props) {
+// 	const { addressData, setAddressData, onErrorCount } = props;
+// 	const { checkName } = useNameValidation();
+// 	const { checkNumberWithApartment } = useAddressValidation();
+// 	const { checkZipCode } = useZipCodeValidation();
+
+// 	const validateFormAddress = (e) => {
+// 		let err = 0;
+
+// 		if (!checkName(addressData.street) || addressData.street === "") {
+// 			err++;
+// 		}
+// 		if (!checkName(addressData.city) || addressData.city === "") {
+// 			err++;
+// 		}
+// 		if (
+// 			!checkNumberWithApartment(addressData.houseNumber) ||
+// 			addressData.houseNumber === ""
+// 		) {
+// 			err++;
+// 		}
+// 		if (!checkZipCode(addressData.zipCode) || addressData.zipCode === "") {
+// 			err++;
+// 		}
+
+// 		onErrorCount(err);
+// 	};
+
+// 	useEffect(() => {
+// 		validateFormAddress();
+// 	}, [addressData]);
+
+// 	const handleInputChange = (field, value) => {
+// 		setAddressData({ ...addressData, [field]: value });
+// 	};
+
+// 	return (
+// 		<form
+// 			style={{
+// 				display: "flex",
+// 				flexDirection: "column",
+// 				alignItems: "center",
+// 				width: "60%",
+// 				margin: "2rem",
+// 			}}>
+// 			<h2 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
+// 				Delivery adress
+// 			</h2>
+// 			<div style={{ display: "flex", width: "100%" }}>
+// 				<FormInput
+// 					icon={<BiStreetView style={{ marginRight: ".5rem" }} />}
+// 					placeholder="Street"
+// 					errorText={"Only letters!"}
+// 					validator={checkName}
+// 					value={addressData.street}
+// 					onChange={(e) => handleInputChange("street", e.target.value)}
+// 				/>
+// 				<FormInput
+// 					icon={<BsFillHouseFill style={{ marginRight: ".5rem" }} />}
+// 					placeholder="House/location number"
+// 					errorText={"Incorrect form!"}
+// 					validator={checkNumberWithApartment}
+// 					value={addressData.houseNumber}
+// 					onChange={(e) => handleInputChange("houseNumber", e.target.value)}
+// 				/>
+// 			</div>
+// 			<FormInput
+// 				icon={<FaCity style={{ marginRight: ".5rem" }} />}
+// 				placeholder="City"
+// 				type="text"
+// 				errorText={"Only letters!"}
+// 				validator={checkName}
+// 				value={addressData.city}
+// 				onChange={(e) => handleInputChange("city", e.target.value)}
+// 			/>
+// 			<FormInput
+// 				icon={<BiCurrentLocation style={{ marginRight: ".5rem" }} />}
+// 				placeholder="Zip code"
+// 				type="text"
+// 				errorText={"Incorrect form!"}
+// 				validator={checkZipCode}
+// 				value={addressData.zipCode}
+// 				onChange={(e) => handleInputChange("zipCode", e.target.value)}
+// 			/>
+// 		</form>
+// 	);
+// }
+
 import { BsFillHouseFill } from "react-icons/bs";
 import { FaCity } from "react-icons/fa";
 import { BiStreetView, BiCurrentLocation } from "react-icons/bi";
@@ -13,24 +110,49 @@ export default function AddressForm(props) {
 	const { checkNumberWithApartment } = useAddressValidation();
 	const { checkZipCode } = useZipCodeValidation();
 
-	const validateFormAddress = (e) => {
-		let err = 0;
+	const fields = [
+		{
+			key: "street",
+			icon: <BiStreetView style={{ marginRight: ".5rem" }} />,
+			placeholder: "Street",
+			errorText: "Only letters!",
+			validator: checkName,
+		},
+		{
+			key: "houseNumber",
+			icon: <BsFillHouseFill style={{ marginRight: ".5rem" }} />,
+			placeholder: "House/location number",
+			errorText: "Incorrect form!",
+			validator: checkNumberWithApartment,
+		},
+		{
+			key: "city",
+			icon: <FaCity style={{ marginRight: ".5rem" }} />,
+			placeholder: "City",
+			type: "text",
+			errorText: "Only letters!",
+			validator: checkName,
+		},
+		{
+			key: "zipCode",
+			icon: <BiCurrentLocation style={{ marginRight: ".5rem" }} />,
+			placeholder: "Zip code",
+			type: "text",
+			errorText: "Incorrect form!",
+			validator: checkZipCode,
+		},
+	];
 
-		if (!checkName(addressData.street) || addressData.street === "") {
-			err++;
-		}
-		if (!checkName(addressData.city) || addressData.city === "") {
-			err++;
-		}
-		if (
-			!checkNumberWithApartment(addressData.houseNumber) ||
-			addressData.houseNumber === ""
-		) {
-			err++;
-		}
-		if (!checkZipCode(addressData.zipCode) || addressData.zipCode === "") {
-			err++;
-		}
+	const validateFormAddress = () => {
+		let err = 0;
+		fields.forEach((field) => {
+			if (
+				!field.validator(addressData[field.key]) ||
+				addressData[field.key] === ""
+			) {
+				err++;
+			}
+		});
 
 		onErrorCount(err);
 	};
@@ -53,44 +175,21 @@ export default function AddressForm(props) {
 				margin: "2rem",
 			}}>
 			<h2 style={{ fontSize: "1.3rem", marginBottom: "1rem" }}>
-				Delivery adress
+				Delivery address
 			</h2>
-			<div style={{ display: "flex", width: "100%" }}>
-				<FormInput
-					icon={<BiStreetView style={{ marginRight: ".5rem" }} />}
-					placeholder="Street"
-					errorText={"Only letters!"}
-					validator={checkName}
-					value={addressData.street}
-					onChange={(e) => handleInputChange("street", e.target.value)}
-				/>
-				<FormInput
-					icon={<BsFillHouseFill style={{ marginRight: ".5rem" }} />}
-					placeholder="House/location number"
-					errorText={"Incorrect form!"}
-					validator={checkNumberWithApartment}
-					value={addressData.houseNumber}
-					onChange={(e) => handleInputChange("houseNumber", e.target.value)}
-				/>
-			</div>
-			<FormInput
-				icon={<FaCity style={{ marginRight: ".5rem" }} />}
-				placeholder="City"
-				type="text"
-				errorText={"Only letters!"}
-				validator={checkName}
-				value={addressData.city}
-				onChange={(e) => handleInputChange("city", e.target.value)}
-			/>
-			<FormInput
-				icon={<BiCurrentLocation style={{ marginRight: ".5rem" }} />}
-				placeholder="Zip code"
-				type="text"
-				errorText={"Incorrect form!"}
-				validator={checkZipCode}
-				value={addressData.zipCode}
-				onChange={(e) => handleInputChange("zipCode", e.target.value)}
-			/>
+			{fields.map((field) => (
+				<div key={field.key} style={{ display: "flex", width: "100%" }}>
+					<FormInput
+						icon={field.icon}
+						placeholder={field.placeholder}
+						type={field.type || "text"}
+						errorText={field.errorText}
+						validator={field.validator}
+						value={addressData[field.key]}
+						onChange={(e) => handleInputChange(field.key, e.target.value)}
+					/>
+				</div>
+			))}
 		</form>
 	);
 }
