@@ -22,6 +22,21 @@ export default function Account() {
 		setIsEditing(false);
 	};
 
+	const editFields = (fields, data, setDataFunction) => {
+		return fields.map((field) => (
+			<div className="dataContainer" key={field.stateKey}>
+				<p className="dataText">{field.label}: </p>
+				<EditableField
+					isEditing={isEditing}
+					value={data[field.stateKey]}
+					onChange={(e) =>
+						setDataFunction({ ...data, [field.stateKey]: e.target.value })
+					}
+				/>
+			</div>
+		));
+	};
+
 	const orders = [
 		{
 			orderNumber: "12345",
@@ -63,6 +78,31 @@ export default function Account() {
 		},
 	];
 
+	const dataFields = [
+		{ label: "Your name", stateKey: "name" },
+		{ label: "Your surname", stateKey: "surname" },
+		{ label: "Your email", stateKey: "email" },
+		{ label: "Phone number", stateKey: "phoneNumber" },
+	];
+
+	const addressFields = [
+		{ label: "Street", stateKey: "street" },
+		{ label: "House number", stateKey: "houseNumber" },
+		{ label: "Zip code", stateKey: "zipCode" },
+		{ label: "City", stateKey: "city" },
+	];
+
+	const editedDataFields = editFields(
+		dataFields,
+		editedFormData,
+		setEditedFormData
+	);
+	const editedAddressFields = editFields(
+		addressFields,
+		editedAddressData,
+		setEditedAddressData
+	);
+
 	return (
 		<div className="pageContainer">
 			<div
@@ -73,98 +113,8 @@ export default function Account() {
 					margin: "1rem",
 				}}>
 				<h2 style={{ textAlign: "center", margin: ".5rem" }}>Your data</h2>
-				<div className="dataContainer">
-					<p className="dataText">Your name: </p>
-					<EditableField
-						isEditing={isEditing}
-						value={editedFormData.name}
-						onChange={(e) =>
-							setEditedFormData({ ...editedFormData, name: e.target.value })
-						}
-					/>
-					<EditableField
-						isEditing={isEditing}
-						value={editedFormData.surname}
-						onChange={(e) =>
-							setEditedFormData({
-								...editedFormData,
-								surname: e.target.value,
-							})
-						}
-					/>
-				</div>
-				<div className="dataContainer">
-					<p className="dataText">Your email: </p>
-					<EditableField
-						isEditing={isEditing}
-						value={editedFormData.email}
-						onChange={(e) =>
-							setEditedFormData({ ...editedFormData, email: e.target.value })
-						}
-					/>
-				</div>
-				<div className="dataContainer">
-					<p className="dataText">Phone number: </p>
-					<EditableField
-						isEditing={isEditing}
-						value={editedFormData.phoneNumber}
-						onChange={(e) =>
-							setEditedFormData({
-								...editedFormData,
-								phoneNumber: e.target.value,
-							})
-						}
-					/>
-				</div>
-				<div className="dataContainer">
-					<p className="dataText">Address: </p>
-					<EditableField
-						isEditing={isEditing}
-						value={editedAddressData.street}
-						onChange={(e) =>
-							setEditedAddressData({
-								...editedAddressData,
-								street: e.target.value,
-							})
-						}
-					/>
-					<EditableField
-						isEditing={isEditing}
-						value={editedAddressData.houseNumber}
-						onChange={(e) =>
-							setEditedAddressData({
-								...editedAddressData,
-								houseNumber: e.target.value,
-							})
-						}
-					/>
-				</div>
-				<div className="dataContainer">
-					<p className="dataText">Zip code: </p>
-					<EditableField
-						isEditing={isEditing}
-						value={editedAddressData.zipCode}
-						onChange={(e) =>
-							setEditedAddressData({
-								...editedAddressData,
-								zipCode: e.target.value,
-							})
-						}
-					/>
-				</div>
-				<div className="dataContainer">
-					<p className="dataText">City: </p>
-					<EditableField
-						isEditing={isEditing}
-						value={editedAddressData.city}
-						onChange={(e) =>
-							setEditedAddressData({
-								...editedAddressData,
-								city: e.target.value,
-							})
-						}
-					/>
-				</div>
+				{editedDataFields}
+				{editedAddressFields}
 				<div
 					style={{
 						width: "100%",
