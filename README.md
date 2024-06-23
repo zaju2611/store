@@ -12,8 +12,16 @@ The primary objective of this project is to develop an e-commerce website that c
 
 ## RUN PROJECT
 
-To start this project, write command in command line
+To start this project at your computer
+
+* Download project
+* Open the project in a text editor
+* In the command line, run:
+
+### npm i
+
+* Then, in the command line, run:
 
 ### `npm start`
 
-and open http://localhost:3000 to view it in your browser.
+* Open http://localhost:3000 to view it in your browser.
